@@ -1,0 +1,281 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.robot_code_generator.testCaseGenerator &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qa_automation.robot_code_generator.testCaseGenerator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">-------------------------------------------------------------------------------------------------</span>
+<span class="sd">Description: testCaseGenerator.py is a module which assists the robotCodeGenerator.py module</span>
+<span class="sd">             and takes responsibility of the *** Test Case *** section </span>
+<span class="sd">            </span>
+<span class="sd">Author: Taha Bilal Gillani</span>
+
+<span class="sd">Modification Log:</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">Date						Author					                                    Description</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">24/09/2019					Taha Bilal Gillani	    	Final draft.</span>
+<span class="sd">---------------------------------------------------------------------------------------------------\</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">qa_automation.robot_code_generator</span> <span class="k">import</span> <span class="n">cleanupCreationHelper</span>
+<span class="kn">from</span> <span class="nn">qa_automation.robot_code_generator</span> <span class="k">import</span> <span class="n">jobCreationHelper</span>
+<span class="kn">from</span> <span class="nn">qa_automation.robot_code_generator</span> <span class="k">import</span> <span class="n">testcaseCreationHelper</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">TAB_SEPERATOR</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+<span class="n">END_OF_LINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+
+<div class="viewcode-block" id="testCaseGenerator"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator">[docs]</a><span class="k">class</span> <span class="nc">testCaseGenerator</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    TestCaseGenerator Class generates the *** TestCases *** portion in the</span>
+<span class="sd">    robot file. This module uses the testcaseCreationHelper.py, cleanupCreationHelper.py and</span>
+<span class="sd">    jobCreationHelper.py hand-in-hand as it holds it&#39;s positional printing implementation</span>
+
+<span class="sd">    The section follows the pattern like</span>
+
+<span class="sd">            *** Test Cases ***</span>
+<span class="sd">        JobDefinitions (it&#39;s test cases in robot logic)</span>
+<span class="sd">        TestCases      (it&#39;s test cases in robot logic)</span>
+<span class="sd">        CleanupSection (it&#39;s test cases in robot logic)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">testcase_helper</span> <span class="o">=</span> <span class="n">testcaseCreationHelper</span><span class="o">.</span><span class="n">testcaseCreationHelper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_helper</span> <span class="o">=</span> <span class="n">jobCreationHelper</span><span class="o">.</span><span class="n">jobCreationHelper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_helper</span> <span class="o">=</span> <span class="n">cleanupCreationHelper</span><span class="o">.</span><span class="n">cleanupCreationHelper</span><span class="p">()</span>
+
+<div class="viewcode-block" id="testCaseGenerator.get_jobs_configurations"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_jobs_configurations">[docs]</a>    <span class="k">def</span> <span class="nf">get_jobs_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method takes the configuration file path as an input and extracts</span>
+<span class="sd">        the &quot;JobDefinitions&quot; portion from the configuration file and returns it as</span>
+<span class="sd">        a JSON dump.</span>
+
+<span class="sd">        :param configuration_json: the JSON dumps of the configuration file</span>
+<span class="sd">        :type configuration_json: dict</span>
+<span class="sd">        :return: a dictionary object which includes all the JobsDefinition list of Jobs</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">jobs</span> <span class="o">=</span> <span class="n">configuration_json</span><span class="p">[</span><span class="s1">&#39;JobsDefinitions&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">jobs</span></div>
+
+<div class="viewcode-block" id="testCaseGenerator.get_testcases_configurations"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_testcases_configurations">[docs]</a>    <span class="k">def</span> <span class="nf">get_testcases_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method takes the configuration file path as an input and extracts</span>
+<span class="sd">        the &quot;TestCases&quot; portion from the configuration file and returns it as</span>
+<span class="sd">        a JSON dump.</span>
+
+<span class="sd">        :param configuration_json: the JSON dumps of the configuration file</span>
+<span class="sd">        :type configuration_json: dict</span>
+<span class="sd">        :return: It holds all the TestCases section from the input configuration file</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">testcases</span> <span class="o">=</span> <span class="n">configuration_json</span><span class="p">[</span><span class="s1">&#39;TestCases&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">testcases</span></div>
+
+<div class="viewcode-block" id="testCaseGenerator.get_job"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_job">[docs]</a>    <span class="k">def</span> <span class="nf">get_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">job_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This classmethod takes input **job_name** and **job_json** and gets the generated</span>
+<span class="sd">        section of test cases for that particular job which includes the [Documentation], [Tags]</span>
+<span class="sd">        and keywords.</span>
+
+<span class="sd">        :param testcase_name: the specific name of the job</span>
+<span class="sd">        :type testcase_name: string</span>
+<span class="sd">        :param testcase_json: the json body of the specific job definition in array of job definitions</span>
+<span class="sd">        :type testcase_json: dict</span>
+<span class="sd">        :return: the robot file format for the job configuration</span>
+<span class="sd">        :rtype: string</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">job_name</span> <span class="o">=</span> <span class="n">job_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_helper</span><span class="o">.</span><span class="n">job_metadata</span><span class="p">(</span>
+            <span class="n">job_name</span><span class="p">,</span> <span class="n">job_json</span><span class="p">[</span><span class="s2">&quot;JobMetadata&quot;</span><span class="p">])</span>
+
+        <span class="n">ingests</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">ingest</span> <span class="ow">in</span> <span class="n">job_json</span><span class="p">[</span><span class="s2">&quot;Ingestion&quot;</span><span class="p">]:</span>
+            <span class="n">ingests</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_helper</span><span class="o">.</span><span class="n">ingestion</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="s2">&quot;Ingestion_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="n">ingest</span><span class="p">)</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">entities</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">job_json</span><span class="p">[</span><span class="s2">&quot;EntityConfigs&quot;</span><span class="p">]:</span>
+            <span class="n">entities</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_helper</span><span class="o">.</span><span class="n">entity_config</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="s2">&quot;EntityConfigs_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="n">entity</span><span class="p">)</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">etlwait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_helper</span><span class="o">.</span><span class="n">etl_wait</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">job_json</span><span class="p">[</span><span class="s2">&quot;ETLWait&quot;</span><span class="p">])</span>
+
+        <span class="n">job</span> <span class="o">=</span> <span class="p">(</span><span class="n">job_name</span> <span class="o">+</span> <span class="n">END_OF_LINE</span> <span class="o">+</span> <span class="n">metadata</span> <span class="o">+</span> <span class="n">entities</span> <span class="o">+</span> <span class="n">ingests</span> <span class="o">+</span> <span class="n">etlwait</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">job</span></div>
+
+<div class="viewcode-block" id="testCaseGenerator.get_testcase"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_testcase">[docs]</a>    <span class="k">def</span> <span class="nf">get_testcase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">testcase_name</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">testcase_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This class method takes input testcase_name, job_name and the testcase_json which has</span>
+<span class="sd">        contents related to that specific test case. It uses a helper function testcase_helper.validations</span>
+<span class="sd">        to parse the section to refer variables and inputs in robot format.</span>
+
+<span class="sd">        :param testcase_name: the specific name of the testcase</span>
+<span class="sd">        :type testcase_name: str</span>
+<span class="sd">        :param testcase_json: the json body of the specific testcase in array of testcases</span>
+<span class="sd">        :type testcase_json: dict</span>
+<span class="sd">        :return: the robot file format for the testcase configuration</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">testcase_name</span> <span class="o">=</span> <span class="n">testcase_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+        <span class="c1">#determination of testcase tpye</span>
+        <span class="k">if</span> <span class="n">testcase_json</span><span class="p">[</span><span class="s2">&quot;TestCaseType&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DataValidation&#39;</span><span class="p">:</span>
+
+            <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">testcase_helper</span><span class="o">.</span><span class="n">test_metadata</span><span class="p">(</span>
+                <span class="n">testcase_name</span><span class="p">,</span> <span class="n">testcase_json</span><span class="p">[</span><span class="s2">&quot;TestMetadata&quot;</span><span class="p">])</span>
+
+            <span class="n">val</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">validation</span> <span class="ow">in</span> <span class="n">testcase_json</span><span class="p">[</span><span class="s2">&quot;Validations&quot;</span><span class="p">]:</span>
+                <span class="n">val</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">testcase_helper</span><span class="o">.</span><span class="n">validations</span><span class="p">(</span>
+                    <span class="n">testcase_name</span><span class="p">,</span> <span class="s2">&quot;Validations_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="n">validation</span><span class="p">)</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">combine_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">job_name</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">testcase_name</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+            <span class="n">testcase</span> <span class="o">=</span> <span class="p">(</span><span class="n">combine_name</span> <span class="o">+</span> <span class="n">END_OF_LINE</span> <span class="o">+</span>
+                        <span class="n">metadata</span> <span class="o">+</span>
+                        <span class="n">val</span> <span class="o">+</span> <span class="n">END_OF_LINE</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">testcase</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;In testcase </span><span class="si">{}</span><span class="s2">, &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">testcase_name</span><span class="p">)</span> <span class="o">+</span>
+                            <span class="s2">&quot;the TestCaseType is not correct, missing or mis-typed,&quot;</span> <span class="o">+</span>
+                            <span class="s2">&quot;please refer to the documentation&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="testCaseGenerator.perform_cleanup"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.perform_cleanup">[docs]</a>    <span class="k">def</span> <span class="nf">perform_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_vars</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This takes input the entity_vars list which is a list of objects, each object includes</span>
+<span class="sd">        JobName, JobTag, Entites for that Job, and CleanupSection for specific job. It uses the sections</span>
+<span class="sd">        to generate a Testcase Teardown against Entities which were created as a trace for testing.</span>
+
+<span class="sd">        :param entity_vars: Variable holds all sections mentioned in description</span>
+<span class="sd">        :type  entity_vars: A complex variable returned by variableGenerator.get_cleanup_configurations</span>
+<span class="sd">        :return: This consists of cleanup section for all the entities created if they opt for cleanup</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">cleanup_section</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">cleanup_section</span> <span class="o">+=</span> <span class="n">END_OF_LINE</span>
+
+        <span class="k">for</span> <span class="n">each_object</span> <span class="ow">in</span> <span class="n">entity_vars</span><span class="p">:</span>
+            <span class="n">each_job_cleanup</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">tags_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_helper</span><span class="o">.</span><span class="n">cleanup_metadata</span><span class="p">(</span><span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;JobTags&quot;</span><span class="p">])</span>
+
+            <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;Entities&quot;</span><span class="p">]:</span>
+
+                <span class="k">if</span> <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;Cleanup&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;CleanupSection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">steps_keywords</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+                    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;CleanupSection&quot;</span><span class="p">]:</span>
+
+                        <span class="k">if</span> <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;Cleanup&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">step</span><span class="p">:</span>
+
+                            <span class="k">for</span> <span class="n">each_section</span> <span class="ow">in</span> <span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;CleanupSection&quot;</span><span class="p">][</span><span class="n">step</span><span class="p">]:</span>
+                                <span class="n">steps_keywords</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_helper</span><span class="o">.</span><span class="n">get_cleanup_operation</span><span class="p">(</span><span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;JobName&quot;</span><span class="p">],</span>
+                                                                                            <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;EntityName&quot;</span><span class="p">],</span>
+                                                                                            <span class="n">each_section</span><span class="p">,</span>
+                                                                                            <span class="n">counter</span><span class="p">)</span>
+                                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">for_job_all_entity</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="n">each_object</span><span class="p">[</span><span class="s2">&quot;JobName&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;EntityName&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">END_OF_LINE</span> <span class="o">+</span>
+                                <span class="n">tags_metadata</span>  <span class="o">+</span>
+                                <span class="n">steps_keywords</span> <span class="o">+</span>
+                                <span class="n">END_OF_LINE</span>
+                                <span class="p">)</span>
+                    <span class="n">each_job_cleanup</span> <span class="o">+=</span> <span class="n">for_job_all_entity</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+            <span class="n">cleanup_section</span> <span class="o">+=</span> <span class="n">each_job_cleanup</span>
+
+        <span class="k">return</span> <span class="n">cleanup_section</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

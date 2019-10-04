@@ -1,0 +1,7 @@
+qa_automation
+=============
+
+.. toctree::
+   :maxdepth: 4
+
+   qa_automation

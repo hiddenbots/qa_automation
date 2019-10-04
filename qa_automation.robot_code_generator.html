@@ -1,0 +1,918 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.robot_code_generator package &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="qa_automation.aws package" href="qa_automation.aws.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="qa_automation.aws.html" title="qa_automation.aws package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >qa_automation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="qa_automation.html" accesskey="U">qa_automation package</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">qa_automation.robot_code_generator package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.cleanupCreationHelper">qa_automation.robot_code_generator.cleanupCreationHelper module</a><ul>
+<li><a class="reference internal" href="#modification-log">Modification Log:</a></li>
+<li><a class="reference internal" href="#date-author-description">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#taha-bilal-gillani-initial-draft">26/09/2019                                      Taha Bilal Gillani              Initial draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.jobCreationHelper">qa_automation.robot_code_generator.jobCreationHelper module</a><ul>
+<li><a class="reference internal" href="#id1">Modification Log:</a></li>
+<li><a class="reference internal" href="#id2">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#taha-bilal-gillani-final-draft">24/09/2019                                      Taha Bilal Gillani              Final draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.robotCodeGenerator">qa_automation.robot_code_generator.robotCodeGenerator module</a></li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.settingsGenerator">qa_automation.robot_code_generator.settingsGenerator module</a><ul>
+<li><a class="reference internal" href="#id3">Modification Log:</a></li>
+<li><a class="reference internal" href="#id4">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#id5">24/09/2019                                      Taha Bilal Gillani              Final draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.testCaseGenerator">qa_automation.robot_code_generator.testCaseGenerator module</a><ul>
+<li><a class="reference internal" href="#id6">Modification Log:</a></li>
+<li><a class="reference internal" href="#id7">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#id8">24/09/2019                                      Taha Bilal Gillani              Final draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.testcaseCreationHelper">qa_automation.robot_code_generator.testcaseCreationHelper module</a><ul>
+<li><a class="reference internal" href="#id9">Modification Log:</a></li>
+<li><a class="reference internal" href="#id10">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#id11">24/09/2019                                      Taha Bilal Gillani              Final draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator.variablesGenerator">qa_automation.robot_code_generator.variablesGenerator module</a><ul>
+<li><a class="reference internal" href="#id12">Modification Log:</a></li>
+<li><a class="reference internal" href="#id13">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#id14">24/09/2019                                      Taha Bilal Gillani              Final draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.robot_code_generator">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="qa_automation.aws.html"
+                        title="previous chapter">qa_automation.aws package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/qa_automation.robot_code_generator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="qa-automation-robot-code-generator-package">
+<h1>qa_automation.robot_code_generator package<a class="headerlink" href="#qa-automation-robot-code-generator-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.cleanupCreationHelper">
+<span id="qa-automation-robot-code-generator-cleanupcreationhelper-module"></span><h2>qa_automation.robot_code_generator.cleanupCreationHelper module<a class="headerlink" href="#module-qa_automation.robot_code_generator.cleanupCreationHelper" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>robot code file under the <strong>* Test Cases *</strong> section.</p>
+</div></blockquote>
+<p>Author: Taha Bilal Gillani</p>
+<div class="section" id="modification-log">
+<h3>Modification Log:<a class="headerlink" href="#modification-log" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="date-author-description">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#date-author-description" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="taha-bilal-gillani-initial-draft">
+<h3>26/09/2019                                      Taha Bilal Gillani              Initial draft.<a class="headerlink" href="#taha-bilal-gillani-initial-draft" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.cleanupCreationHelper.</code><code class="sig-name descname">cleanupCreationHelper</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/cleanupCreationHelper.html#cleanupCreationHelper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.cleanup_metadata">
+<code class="sig-name descname">cleanup_metadata</code><span class="sig-paren">(</span><em class="sig-param">tags</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/cleanupCreationHelper.html#cleanupCreationHelper.cleanup_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.cleanup_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.get_cleanup_operation">
+<code class="sig-name descname">get_cleanup_operation</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">entity_name</em>, <em class="sig-param">cleanup_json</em>, <em class="sig-param">counter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/cleanupCreationHelper.html#cleanupCreationHelper.get_cleanup_operation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.get_cleanup_operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes JobName, EntityName, CleaupJSON which is to determine type and
+a counter is passed to it to differentiate it’s variable reference with other
+references</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>job_name</strong> – Name of the Job for which the section is to be printed</p>
+</dd>
+</dl>
+<p>:type str
+:param entity_name: Name of the Entity for a job for which the section is to be printed
+:type str
+:param cleanup_json: The section is passed to determine it’s actual or referenced type in variables
+:type dict
+:param counter: A counter is passed to ensure uniqueness between variables in a section
+:type int
+:return: returns each keyword for cleanup formatted as a string in robot code format
+:rtype: str</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.positional_printer">
+<code class="sig-name descname">positional_printer</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">entity_name</em>, <em class="sig-param">key_name</em>, <em class="sig-param">data_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/cleanupCreationHelper.html#cleanupCreationHelper.positional_printer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.positional_printer" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the job name, entity_name, key_name and data_json to be printer, it checks
+if the provided input is a list or a dict, if no, it wil have a name implementation in the variable
+section and it can be reference here with ${variable} structure, if yes, this value will be passed
+to stringify function which performs it’s implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_name</strong> (<em>str</em>) – name of the job for the variable</p></li>
+<li><p><strong>entity_name</strong> (<em>str</em>) – name of the entity (must be unique) for the variable</p></li>
+<li><p><strong>key_name</strong> (<em>str</em>) – name of the key for the variable</p></li>
+<li><p><strong>data_json</strong> (<em>object</em>) – the data required to determine type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>variable definition in robot code for a keyword or hardcoded value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.stringify">
+<em class="property">static </em><code class="sig-name descname">stringify</code><span class="sig-paren">(</span><em class="sig-param">input_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/cleanupCreationHelper.html#cleanupCreationHelper.stringify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.stringify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Staticmethod inputs a string which is to be check if it’s a reference to a varible string
+in “$value” format or “value” format, if it’s in the later format, the value will be hardcoded
+in the test suite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_string</strong> (<em>str</em>) – string to be checked for the format</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>determined string if it’s to be hardcoded or to be made a variable reference</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.jobCreationHelper">
+<span id="qa-automation-robot-code-generator-jobcreationhelper-module"></span><h2>qa_automation.robot_code_generator.jobCreationHelper module<a class="headerlink" href="#module-qa_automation.robot_code_generator.jobCreationHelper" title="Permalink to this headline">¶</a></h2>
+<p>Author: Taha Bilal Gillani</p>
+<div class="section" id="id1">
+<h3>Modification Log:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id2">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="taha-bilal-gillani-final-draft">
+<h3>24/09/2019                                      Taha Bilal Gillani              Final draft.<a class="headerlink" href="#taha-bilal-gillani-final-draft" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.jobCreationHelper.</code><code class="sig-name descname">jobCreationHelper</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.entity_config">
+<code class="sig-name descname">entity_config</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">entity_config_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper.entity_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.entity_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the name and data json of the section as input and outputs the entity configuration
+portion in robotcode file against a testcase. the implementation of this function has decision statements that are taken on
+basis of the configurations provided in the JSON portion. At end it prints the test cases against the
+given configuration in the robot code file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_name</strong> (<em>str</em>) – name of the job for which entity configuration belongs to</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – name of the section which is EntityConfigs</p></li>
+<li><p><strong>entity_config_json</strong> (<em>dict</em>) – consists all the data related to entity configurations for the specific job</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns the entity upload keyword with required fields in robot code fashion</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.etl_wait">
+<code class="sig-name descname">etl_wait</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">etl_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper.etl_wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.etl_wait" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.ingestion">
+<code class="sig-name descname">ingestion</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">ingestion_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper.ingestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.ingestion" title="Permalink to this definition">¶</a></dt>
+<dd><p>It requires job name and the ingestion json as input, ingestion_json comes from
+the configuraiton file, the implementation of this function has decision statements that are taken on
+basis of the configurations provided in the JSON portion. At end it prints the test cases against the
+given configuration in the robot code file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_name</strong> (<em>str</em>) – the name of the job for which ingestion is to be executed</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – the name of the section which is Ingestion</p></li>
+<li><p><strong>ingestion_json</strong> (<em>dict</em>) – the data required for the ingestion</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the ingestion robot code for the particular job</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.job_metadata">
+<code class="sig-name descname">job_metadata</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">metadata_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper.job_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.job_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>It requires job name and the metadata json as input, metadata_json comes from
+the configuraiton file, the metadata includes the Documentation of the test case and the tags that are
+passed to the test case in configuration file. This function prints the [Documentation] and [Tags] tags in
+the robot code file against a test case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_name</strong> (<em>str</em>) – the name of the job which metadata belongs to</p></li>
+<li><p><strong>metadata_json</strong> (<em>str</em>) – consists all the data required for production of the [Documentation] and [Tags]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a string in robot code format having the needful</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.positional_printer">
+<code class="sig-name descname">positional_printer</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">key_name</em>, <em class="sig-param">data_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper.positional_printer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.positional_printer" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the job name, section name, key name and data to be printer, it checks
+if the provided input is a list or a dict, if no, it wil have a name implementation in the variable
+section and it can be reference here with ${variable} structure, if yes, this value will be passed
+to stringify function which performs it’s implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_name</strong> (<em>str</em>) – The name of the test case</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – The section of the test case</p></li>
+<li><p><strong>key_name</strong> (<em>str</em>) – The key passed, will be different and totally on choice</p></li>
+<li><p><strong>data_json</strong> (<em>object</em>) – the test case data in form of dictionary which determins type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>variable definition in robot code for a keyword</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.stringify">
+<code class="sig-name descname">stringify</code><span class="sig-paren">(</span><em class="sig-param">input_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/jobCreationHelper.html#jobCreationHelper.stringify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.stringify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classmethod inputs a string which is to be check if it’s a reference to a varible string
+in “$value” format or “value” format, if it’s in the later format, the value will be hardcoded
+in the test suite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_string</strong> (<em>str</em>) – string to be checked for the format</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>determined string if it’s to be hardcoded or to be made a variable reference</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.robotCodeGenerator">
+<span id="qa-automation-robot-code-generator-robotcodegenerator-module"></span><h2>qa_automation.robot_code_generator.robotCodeGenerator module<a class="headerlink" href="#module-qa_automation.robot_code_generator.robotCodeGenerator" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong>: This is an orchestration class which works in hand with modules SettingsGenerator, TestCaseGenerator, VariableGenerator. This class takes the configuration file and robot file name to be generated and generates a robot code file against the configurations.</p>
+<p><strong>Author</strong>: Taha Bilal Gillani</p>
+<p><strong>Author Notes</strong>:   Cleanup Functionality is not integrated in this file</p>
+<p><cite>Modification Log</cite>:</p>
+<p><strong>Date                  |                       Author                                            |                          Description</strong></p>
+<p><strong>24/09/2019            |                       Taha Bilal Gillani         |    Final draft.</strong></p>
+<hr class="docutils" />
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.robotCodeGenerator.</code><code class="sig-name descname">robotCodeGenerator</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/robotCodeGenerator.html#robotCodeGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is an orchestraction class which produces the robot code using
+the modules for file generation using the configuration file</p>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator.configuration_convert_json">
+<em class="property">static </em><code class="sig-name descname">configuration_convert_json</code><span class="sig-paren">(</span><em class="sig-param">configuration_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/robotCodeGenerator.html#robotCodeGenerator.configuration_convert_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator.configuration_convert_json" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configuration_file_path</strong> – this is a local path to the json file holding the</p>
+</dd>
+</dl>
+<p>configuration
+:type
+:return: it returns the json dumps of the input file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator.generate_code">
+<code class="sig-name descname">generate_code</code><span class="sig-paren">(</span><em class="sig-param">configuration_file</em>, <em class="sig-param">robot_file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/robotCodeGenerator.html#robotCodeGenerator.generate_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator.generate_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method requires the configuration file name in local path and takes
+input of the robot code file name that is to be generated.
+This function goes herrarically, it reads the JSON configuration file, dumps it
+in a varialbe, the uses the SettingsGenerator module, VariablesGenerator module,
+TestCaseGenerator module. Each module returns it’s parsed output in robot code fashion
+in string format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configuration_file</strong> (<em>str</em>) – the local file path of the configuration file</p></li>
+<li><p><strong>robot_file_name</strong> (<em>str</em>) – name to be given to the generated robot code file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator.robot_file_generator">
+<em class="property">static </em><code class="sig-name descname">robot_file_generator</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">settings_section</em>, <em class="sig-param">testcases_section</em>, <em class="sig-param">jobs_section</em>, <em class="sig-param">cleanups_section</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/robotCodeGenerator.html#robotCodeGenerator.robot_file_generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.robotCodeGenerator.robotCodeGenerator.robot_file_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is an orchestraction classmethod which takes input all the sections of robot code as string
+and dumps them into a robot extension file, ready for execution
+The Orchestraction must be in following manner</p>
+<ol class="arabic simple">
+<li><p><strong>settings_section</strong></p></li>
+<li><p><strong>jobs_section</strong></p></li>
+<li><p><strong>testcases_section</strong></p></li>
+<li><p><strong>cleanups_section</strong></p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – the name that is to be given to the to be generated robot file</p></li>
+<li><p><strong>settings_section</strong> (<em>str</em>) – settings section for the robot file</p></li>
+<li><p><strong>testcases_section</strong> (<em>str</em>) – testcase section for the robot file</p></li>
+<li><p><strong>variables_section</strong> (<em>str</em>) – variable section for the robot file</p></li>
+<li><p><strong>cleanups_section</strong> (<em>str</em>) – cleanups section for robot file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.settingsGenerator">
+<span id="qa-automation-robot-code-generator-settingsgenerator-module"></span><h2>qa_automation.robot_code_generator.settingsGenerator module<a class="headerlink" href="#module-qa_automation.robot_code_generator.settingsGenerator" title="Permalink to this headline">¶</a></h2>
+<p>Author: Taha Bilal Gillani</p>
+<div class="section" id="id3">
+<h3>Modification Log:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id4">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id5">
+<h3>24/09/2019                                      Taha Bilal Gillani              Final draft.<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.settingsGenerator.settingsGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.settingsGenerator.</code><code class="sig-name descname">settingsGenerator</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/settingsGenerator.html#settingsGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.settingsGenerator.settingsGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class initiates a file with the robot extention which has the robot
+code to be executed and writes the static portion
+in the robot file of the Settings
+The static code will be edited if new settings are to be imported</p>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.settingsGenerator.settingsGenerator.get_settings_section">
+<code class="sig-name descname">get_settings_section</code><span class="sig-paren">(</span><em class="sig-param">configuration_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/settingsGenerator.html#settingsGenerator.get_settings_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.settingsGenerator.settingsGenerator.get_settings_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>This classmethod returns the <strong>*Settings*</strong> part for the robot code
+This portion is to hardcoded if any new files are to be added or included
+using the robotframework Library keyword</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configuration_file</strong> (<em>str</em>) – name of the configuration file which is required to form variables using robotframeword’s :func: get_variables() method</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the <strong>*Settings*</strong> section for the robot code file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.testCaseGenerator">
+<span id="qa-automation-robot-code-generator-testcasegenerator-module"></span><h2>qa_automation.robot_code_generator.testCaseGenerator module<a class="headerlink" href="#module-qa_automation.robot_code_generator.testCaseGenerator" title="Permalink to this headline">¶</a></h2>
+<p>Author: Taha Bilal Gillani</p>
+<div class="section" id="id6">
+<h3>Modification Log:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id7">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id8">
+<h3>24/09/2019                                      Taha Bilal Gillani              Final draft.<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.testCaseGenerator.</code><code class="sig-name descname">testCaseGenerator</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testCaseGenerator.html#testCaseGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>TestCaseGenerator Class generates the <strong>* TestCases *</strong> portion in the
+robot file. This module uses the testcaseCreationHelper.py, cleanupCreationHelper.py and
+jobCreationHelper.py hand-in-hand as it holds it’s positional printing implementation</p>
+<p>The section follows the pattern like</p>
+<blockquote>
+<div><blockquote>
+<div><p><strong>* Test Cases *</strong></p>
+</div></blockquote>
+<p>JobDefinitions (it’s test cases in robot logic)
+TestCases      (it’s test cases in robot logic)
+CleanupSection (it’s test cases in robot logic)</p>
+</div></blockquote>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_job">
+<code class="sig-name descname">get_job</code><span class="sig-paren">(</span><em class="sig-param">job_name</em>, <em class="sig-param">job_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testCaseGenerator.html#testCaseGenerator.get_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>This classmethod takes input <strong>job_name</strong> and <strong>job_json</strong> and gets the generated
+section of test cases for that particular job which includes the [Documentation], [Tags]
+and keywords.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testcase_name</strong> (<em>string</em>) – the specific name of the job</p></li>
+<li><p><strong>testcase_json</strong> (<em>dict</em>) – the json body of the specific job definition in array of job definitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the robot file format for the job configuration</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_jobs_configurations">
+<code class="sig-name descname">get_jobs_configurations</code><span class="sig-paren">(</span><em class="sig-param">configuration_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testCaseGenerator.html#testCaseGenerator.get_jobs_configurations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_jobs_configurations" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method takes the configuration file path as an input and extracts
+the “JobDefinitions” portion from the configuration file and returns it as
+a JSON dump.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configuration_json</strong> (<em>dict</em>) – the JSON dumps of the configuration file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dictionary object which includes all the JobsDefinition list of Jobs</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_testcase">
+<code class="sig-name descname">get_testcase</code><span class="sig-paren">(</span><em class="sig-param">testcase_name</em>, <em class="sig-param">job_name</em>, <em class="sig-param">testcase_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testCaseGenerator.html#testCaseGenerator.get_testcase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_testcase" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class method takes input testcase_name, job_name and the testcase_json which has
+contents related to that specific test case. It uses a helper function testcase_helper.validations
+to parse the section to refer variables and inputs in robot format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testcase_name</strong> (<em>str</em>) – the specific name of the testcase</p></li>
+<li><p><strong>testcase_json</strong> (<em>dict</em>) – the json body of the specific testcase in array of testcases</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the robot file format for the testcase configuration</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_testcases_configurations">
+<code class="sig-name descname">get_testcases_configurations</code><span class="sig-paren">(</span><em class="sig-param">configuration_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testCaseGenerator.html#testCaseGenerator.get_testcases_configurations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.get_testcases_configurations" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method takes the configuration file path as an input and extracts
+the “TestCases” portion from the configuration file and returns it as
+a JSON dump.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configuration_json</strong> (<em>dict</em>) – the JSON dumps of the configuration file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>It holds all the TestCases section from the input configuration file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.perform_cleanup">
+<code class="sig-name descname">perform_cleanup</code><span class="sig-paren">(</span><em class="sig-param">entity_vars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testCaseGenerator.html#testCaseGenerator.perform_cleanup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testCaseGenerator.testCaseGenerator.perform_cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><p>This takes input the entity_vars list which is a list of objects, each object includes
+JobName, JobTag, Entites for that Job, and CleanupSection for specific job. It uses the sections
+to generate a Testcase Teardown against Entities which were created as a trace for testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>entity_vars</strong> (<em>A complex variable returned by variableGenerator.get_cleanup_configurations</em>) – Variable holds all sections mentioned in description</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This consists of cleanup section for all the entities created if they opt for cleanup</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.testcaseCreationHelper">
+<span id="qa-automation-robot-code-generator-testcasecreationhelper-module"></span><h2>qa_automation.robot_code_generator.testcaseCreationHelper module<a class="headerlink" href="#module-qa_automation.robot_code_generator.testcaseCreationHelper" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>robot code file under the <strong>* Test Cases *</strong> section.</p>
+</div></blockquote>
+<p>Author: Taha Bilal Gillani</p>
+<div class="section" id="id9">
+<h3>Modification Log:<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id10">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id11">
+<h3>24/09/2019                                      Taha Bilal Gillani              Final draft.<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.testcaseCreationHelper.</code><code class="sig-name descname">testcaseCreationHelper</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testcaseCreationHelper.html#testcaseCreationHelper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class for testCaseGenerator.py class. This holds all methods that help in
+constructing the string that holds the testcase in robot code fashion</p>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.positional_printer">
+<code class="sig-name descname">positional_printer</code><span class="sig-paren">(</span><em class="sig-param">testcase_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">key_name</em>, <em class="sig-param">data_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testcaseCreationHelper.html#testcaseCreationHelper.positional_printer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.positional_printer" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the job name, section name, key name and data to be printer, it checks
+if the provided input is a list or a dict, if no, it wil have a name implementation in the variable
+section and it can be reference here with ${variable} structure, if yes, this value will be passed
+to stringify function which performs it’s implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testcase_name</strong> (<em>str</em>) – The name of the test case</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – The section of the test case</p></li>
+<li><p><strong>key_name</strong> (<em>str</em>) – The key passed, will be different and totally on choice</p></li>
+<li><p><strong>data_json</strong> (<em>object</em>) – the test case data in form of dictionary which determins type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>variable definition in robot code for a keyword</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.stringify">
+<code class="sig-name descname">stringify</code><span class="sig-paren">(</span><em class="sig-param">input_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testcaseCreationHelper.html#testcaseCreationHelper.stringify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.stringify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classmethod inputs a string which is to be check if it’s a reference to a varible string
+in “$value” format or “value” format, if it’s in the later format, the value will be hardcoded
+in the test suite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_string</strong> (<em>str</em>) – string to be checked for the format</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>determined string if it’s to be hardcoded or to be made a variable reference</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.test_metadata">
+<code class="sig-name descname">test_metadata</code><span class="sig-paren">(</span><em class="sig-param">testcase_name</em>, <em class="sig-param">metadata_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testcaseCreationHelper.html#testcaseCreationHelper.test_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.test_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>It requires testcase name and the metadata json as input, metadata_json comes from
+the configuraiton file, the metadata includes the Documentation of the test case and the tags that are
+passed to the test case in configuration file. This function prints the [Documentation] and [Tags] tags in
+the robot code file against a test case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testcase_name</strong> (<em>str</em>) – name of the test came for which the metadata is to be produced</p></li>
+<li><p><strong>metadata_json</strong> (<em>dict</em>) – the information that is to be formatted in robot code documentation format</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>robot code formatted test case metadata</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.validations">
+<code class="sig-name descname">validations</code><span class="sig-paren">(</span><em class="sig-param">testcase_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">validations_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/testcaseCreationHelper.html#testcaseCreationHelper.validations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.testcaseCreationHelper.testcaseCreationHelper.validations" title="Permalink to this definition">¶</a></dt>
+<dd><p>It requires job name and the ingestion json as input, ingestion_json comes from
+the configuraiton file, the implementation of this function has decision statements that are taken on
+basis of the configurations provided in the JSON portion. At end it prints the test cases against the
+given configuration in the robot code file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testcase_name</strong> (<em>str</em>) – name of the test case for which the section is passed</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – name of the section in test case for which the section is passed for</p></li>
+<li><p><strong>validations_json</strong> (<em>dict</em>) – the data of the section</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the robot code keyword implementation string to write in file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator.variablesGenerator">
+<span id="qa-automation-robot-code-generator-variablesgenerator-module"></span><h2>qa_automation.robot_code_generator.variablesGenerator module<a class="headerlink" href="#module-qa_automation.robot_code_generator.variablesGenerator" title="Permalink to this headline">¶</a></h2>
+<p>Author: Taha Bilal Gillani</p>
+<div class="section" id="id12">
+<h3>Modification Log:<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id13">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id14">
+<h3>24/09/2019                                      Taha Bilal Gillani              Final draft.<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.robot_code_generator.variablesGenerator.</code><code class="sig-name descname">variablesGenerator</code><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This module produces the <strong>* Variables *</strong> section in the robotcode file for the 
+dictionaries and the lists involved.</p>
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.dump_variables">
+<code class="sig-name descname">dump_variables</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.dump_variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.dump_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>This functions on making a decision on filename generates a JSON
+file locally including the variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – this filename suggest in which file the variables are to be saved</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.get_cleanup_configurations">
+<code class="sig-name descname">get_cleanup_configurations</code><span class="sig-paren">(</span><em class="sig-param">configuration_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.get_cleanup_configurations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.get_cleanup_configurations" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method takes the configuration file path as an input and extracts
+the “CleanupSection” portion from the configuration file and returns it as
+a JSON dump</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configuration_json</strong> (<em>dict</em>) – the JSON dumps of the configuration file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>job_data has each object which holds a unique JobName, JobTags, Entities of the Job and complete CleanupSection</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.get_configurations">
+<code class="sig-name descname">get_configurations</code><span class="sig-paren">(</span><em class="sig-param">configurations_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.get_configurations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.get_configurations" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function extracts the “Configurations” portion from the input
+configurations JSON file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configurations_json</strong> (<em>dict</em>) – complete configuration file json in dict</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>this returns the “Configurations” part from the configuration JSON</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.parse_section">
+<code class="sig-name descname">parse_section</code><span class="sig-paren">(</span><em class="sig-param">testcase_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">section_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.parse_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.parse_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a section as input like ingestion, validations etc and creates required dictionaries
+and lists variables in robot code file. This method returns the parse section as a string.
+This method uses other two methods like variable_dictionary and variable_list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testcase_name</strong> (<em>str</em>) – Name of the testcase for which the section is to be parsed</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – Section of the testcase for which the section is to be parsed</p></li>
+<li><p><strong>section_dict</strong> (<em>object</em>) – This depends on the input, it may be a list, a dictionary or a complex nested object</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.replace_values_in_section">
+<code class="sig-name descname">replace_values_in_section</code><span class="sig-paren">(</span><em class="sig-param">entity</em>, <em class="sig-param">section</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.replace_values_in_section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.replace_values_in_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function inputs entity with it’s other defined parameters and replaces
+them in a section, in section it’s mentioned with the key in entities like EntityName, Domain etc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entity</strong> (<em>dict</em>) – A single entity object which has EntityName, Cleanup and other optional key value pairs</p></li>
+<li><p><strong>section</strong> (<em>object</em>) – the section in which the file is to be replaced</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The section sent as parameter with replaced values with entity dict keys</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.save_entity_varialbes">
+<code class="sig-name descname">save_entity_varialbes</code><span class="sig-paren">(</span><em class="sig-param">entity_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.save_entity_varialbes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.save_entity_varialbes" title="Permalink to this definition">¶</a></dt>
+<dd><p>In our code flow, the cleanup section is generic and runs for multiple
+entites by replacing the values passed in the “Entities” section inside the JSON
+configuration file. This functions inputs a complex defined variable entity_json which includes
+“JobName”: string,
+“JobTags”: string,
+“Entities”: a list of objects,
+“CleanupSection” : a list of nested objects
+It utilizes this information to create variables used for the CleanupSection</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>entity_json</strong> (<em>object</em>) – entity json holds JobName, CleanupSection, JobTags and Entites for that Job</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.save_variables">
+<code class="sig-name descname">save_variables</code><span class="sig-paren">(</span><em class="sig-param">configurations_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.save_variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.save_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>This fucntion takes the configuration file and extracts all the variables
+from the sections that are to be defined as variables and not has hardcoded
+files inside the robot code file.
+The fucntions first extracts variables from JobsDefinitions, in JobsDefinitions from
+Sections like,
+- <strong>EntityConfigs</strong>
+- <strong>Ingestion</strong>
+- <strong>ETLWait</strong>
+The function secondly extracts the variables from the TestCases, in Testcases from Sections
+like,
+- <strong>Validations</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configurations_json</strong> (<em>dict</em>) – The configuration file in JSON format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.variable_object">
+<code class="sig-name descname">variable_object</code><span class="sig-paren">(</span><em class="sig-param">list_type</em>, <em class="sig-param">testcase_name</em>, <em class="sig-param">section_name</em>, <em class="sig-param">key</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/robot_code_generator/variablesGenerator.html#variablesGenerator.variable_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.variable_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>It forms a list variable for the robot code against a list and returns
+it as a string on basis of the passed parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_type</strong> (<em>str</em>) – this determines in which list to append the variables into</p></li>
+<li><p><strong>testcase_name</strong> (<em>str</em>) – name of the testcase for which the variable is to be generated</p></li>
+<li><p><strong>section_name</strong> (<em>str</em>) – section name of the testcase for which the variable is to be generated</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – This key is basically the operation type or the choice taken inside the section to generate the variable for</p></li>
+<li><p><strong>value</strong> (<em>dict</em>) – This is the object for the variable that will be packed and added to a global list on basis of the list_type choice</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.robot_code_generator">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-qa_automation.robot_code_generator" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="qa_automation.aws.html" title="qa_automation.aws package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >qa_automation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="qa_automation.html" >qa_automation package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.robot_code_generator.cleanupCreationHelper &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qa_automation.robot_code_generator.cleanupCreationHelper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">-------------------------------------------------------------------------------------------------</span>
+<span class="sd">Description: CleanupCreationHelper holds methods that assist the testCaseGenerator.py module</span>
+<span class="sd">             This module has all the methods that are required to print the cleanup jobs in the</span>
+<span class="sd">             robot code file under the *** Test Cases *** section.</span>
+
+<span class="sd">Author: Taha Bilal Gillani</span>
+
+<span class="sd">Modification Log:</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">Date						Author					                                    Description</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">26/09/2019					Taha Bilal Gillani	    	Initial draft.</span>
+<span class="sd">---------------------------------------------------------------------------------------------------\</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">TAB_SEPERATOR</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+<span class="n">END_OF_LINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+
+<div class="viewcode-block" id="cleanupCreationHelper"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper">[docs]</a><span class="k">class</span> <span class="nc">cleanupCreationHelper</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="cleanupCreationHelper.stringify"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.stringify">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">input_string</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Staticmethod inputs a string which is to be check if it&#39;s a reference to a varible string</span>
+<span class="sd">        in &quot;$value&quot; format or &quot;value&quot; format, if it&#39;s in the later format, the value will be hardcoded</span>
+<span class="sd">        in the test suite.</span>
+
+<span class="sd">        :param input_string: string to be checked for the format</span>
+<span class="sd">        :type  input_string: str</span>
+<span class="sd">        :return: determined string if it&#39;s to be hardcoded or to be made a variable reference</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">input_string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;$&#39;</span><span class="p">:</span>
+            <span class="n">input_string</span> <span class="o">=</span> <span class="s1">&#39;${&#39;</span> <span class="o">+</span> <span class="n">input_string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span>
+            <span class="k">return</span> <span class="n">input_string</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">input_string</span></div>
+
+<div class="viewcode-block" id="cleanupCreationHelper.positional_printer"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.positional_printer">[docs]</a>    <span class="k">def</span> <span class="nf">positional_printer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span> <span class="n">key_name</span><span class="p">,</span> <span class="n">data_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This function takes the job name, entity_name, key_name and data_json to be printer, it checks</span>
+<span class="sd">        if the provided input is a list or a dict, if no, it wil have a name implementation in the variable</span>
+<span class="sd">        section and it can be reference here with ${variable} structure, if yes, this value will be passed</span>
+<span class="sd">        to stringify function which performs it&#39;s implementation.</span>
+
+<span class="sd">        :param job_name: name of the job for the variable</span>
+<span class="sd">        :type job_name: str</span>
+<span class="sd">        :param entity_name: name of the entity (must be unique) for the variable</span>
+<span class="sd">        :type entity_name: str</span>
+<span class="sd">        :param key_name: name of the key for the variable</span>
+<span class="sd">        :type key_name: str</span>
+<span class="sd">        :param data_json: the data required to determine type</span>
+<span class="sd">        :type data_json: object</span>
+<span class="sd">        :return: variable definition in robot code for a keyword or hardcoded value</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">job_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">entity_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">job_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">entity_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Is the Value entered in JobName </span><span class="si">{}</span><span class="s2"> , Section : </span><span class="si">{}</span><span class="s2"> , Key : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span> <span class="n">key_name</span><span class="p">)</span>
+                <span class="o">+</span> <span class="s2">&quot; Correct? </span><span class="se">\n</span><span class="s2"> It seems like an invalide or unsupported option. &quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="cleanupCreationHelper.get_cleanup_operation"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.get_cleanup_operation">[docs]</a>    <span class="k">def</span> <span class="nf">get_cleanup_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span> <span class="n">cleanup_json</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This function takes JobName, EntityName, CleaupJSON which is to determine type and</span>
+<span class="sd">        a counter is passed to it to differentiate it&#39;s variable reference with other</span>
+<span class="sd">        references</span>
+
+<span class="sd">        :param job_name: Name of the Job for which the section is to be printed</span>
+<span class="sd">        :type str</span>
+<span class="sd">        :param entity_name: Name of the Entity for a job for which the section is to be printed</span>
+<span class="sd">        :type str</span>
+<span class="sd">        :param cleanup_json: The section is passed to determine it&#39;s actual or referenced type in variables</span>
+<span class="sd">        :type dict</span>
+<span class="sd">        :param counter: A counter is passed to ensure uniqueness between variables in a section</span>
+<span class="sd">        :type int</span>
+<span class="sd">        :return: returns each keyword for cleanup formatted as a string in robot code format</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DeleteTableRedshift&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Configurations&quot;</span> <span class="ow">in</span> <span class="n">cleanup_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="k">return</span> <span class="p">(</span><span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="s1">&#39;delete redshift table&#39;</span> <span class="o">+</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;Configurations&quot;</span><span class="p">])</span> <span class="o">+</span>
+                        <span class="n">END_OF_LINE</span>
+                        <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot; In CleanupSection for CleanupName : </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                               <span class="s2">&quot; Configurations are either incorrect or unavailible.&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DeleteTableAthena&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Configurations&quot;</span> <span class="ow">in</span> <span class="n">cleanup_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="k">return</span> <span class="p">(</span><span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="s1">&#39;delete athena table&#39;</span> <span class="o">+</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;Configurations&quot;</span><span class="p">])</span> <span class="o">+</span>
+                        <span class="n">END_OF_LINE</span>
+                        <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot; In CleanupSection for CleanupName : </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                               <span class="s2">&quot;Configurations are either incorrect or unavailible. &quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DeleteTableRDS&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Configurations&quot;</span> <span class="ow">in</span> <span class="n">cleanup_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="k">return</span> <span class="p">(</span><span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="s1">&#39;delete rds table&#39;</span> <span class="o">+</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;Configurations&quot;</span><span class="p">])</span> <span class="o">+</span>
+                        <span class="n">END_OF_LINE</span>
+                        <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot; In CleanupSection for CleanupName : </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                               <span class="s2">&quot;Configurations are either incorrect or unavailible. &quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DeleteRowsRDS&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Configurations&quot;</span> <span class="ow">in</span> <span class="n">cleanup_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="k">return</span> <span class="p">(</span><span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="s1">&#39;delete rows rds&#39;</span> <span class="o">+</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">,</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span>
+                                                <span class="n">cleanup_json</span><span class="p">[</span><span class="s2">&quot;Configurations&quot;</span><span class="p">])</span> <span class="o">+</span>
+                        <span class="n">END_OF_LINE</span>
+                        <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot; In CleanupSection for CleanupName : </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                               <span class="s2">&quot;Configurations are either incorrect or unavailible. &quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot; In CleanupSection, OperationType for CleanupName : </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                             <span class="s2">&quot; OperationType is either incorrect or unavailible. &quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="cleanupCreationHelper.cleanup_metadata"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.cleanupCreationHelper.cleanupCreationHelper.cleanup_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">cleanup_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">tags_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+                <span class="n">tags_string</span> <span class="o">+=</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span>
+                    <span class="n">TAB_SEPERATOR</span> <span class="o">+</span> <span class="s2">&quot;[Tags]&quot;</span> <span class="o">+</span> <span class="n">tags_string</span> <span class="o">+</span> <span class="n">END_OF_LINE</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Tags are missing or incorrect when writing cleanup metadata&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

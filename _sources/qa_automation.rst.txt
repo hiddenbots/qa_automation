@@ -1,0 +1,18 @@
+qa\_automation package
+======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   qa_automation.aws
+   qa_automation.robot_code_generator
+
+Module contents
+---------------
+
+.. automodule:: qa_automation
+   :members:
+   :undoc-members:
+   :show-inheritance:

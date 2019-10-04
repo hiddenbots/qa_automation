@@ -1,0 +1,454 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.robot_code_generator.variablesGenerator &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qa_automation.robot_code_generator.variablesGenerator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">-------------------------------------------------------------------------------------------------</span>
+<span class="sd">Description: VariableGenerator.py module generates the *** Variables *** section for only the hard-coded</span>
+<span class="sd">             /static parts variables in the configuration file</span>
+<span class="sd">            </span>
+<span class="sd">Author: Taha Bilal Gillani</span>
+
+<span class="sd">Modification Log:</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">Date						Author					                                    Description</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">24/09/2019					Taha Bilal Gillani	    	Final draft.</span>
+<span class="sd">---------------------------------------------------------------------------------------------------\</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+
+<span class="n">TAB_SEPERATOR</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+<span class="n">END_OF_LINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+
+<div class="viewcode-block" id="variablesGenerator"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator">[docs]</a><span class="k">class</span> <span class="nc">variablesGenerator</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This module produces the *** Variables *** section in the robotcode file for the </span>
+<span class="sd">    dictionaries and the lists involved.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">variables_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replace_variables_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="variablesGenerator.get_configurations"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.get_configurations">[docs]</a>    <span class="k">def</span> <span class="nf">get_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configurations_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This function extracts the &quot;Configurations&quot; portion from the input</span>
+<span class="sd">        configurations JSON file</span>
+
+<span class="sd">        :param configurations_json: complete configuration file json in dict</span>
+<span class="sd">        :type configurations_json: dict</span>
+<span class="sd">        :return: this returns the &quot;Configurations&quot; part from the configuration JSON</span>
+<span class="sd">        :rtype:  dict</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">configurations</span> <span class="o">=</span> <span class="n">configurations_json</span><span class="p">[</span><span class="s1">&#39;Configurations&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Configurations&quot;</span><span class="p">:</span> <span class="n">configurations</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.get_cleanup_configurations"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.get_cleanup_configurations">[docs]</a>    <span class="k">def</span> <span class="nf">get_cleanup_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method takes the configuration file path as an input and extracts</span>
+<span class="sd">        the &quot;CleanupSection&quot; portion from the configuration file and returns it as</span>
+<span class="sd">        a JSON dump</span>
+
+<span class="sd">        :param configuration_json: the JSON dumps of the configuration file</span>
+<span class="sd">        :type  configuration_json: dict</span>
+<span class="sd">        :return: job_data has each object which holds a unique JobName, JobTags, Entities of the Job and complete CleanupSection</span>
+<span class="sd">        :rtype: object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">cleanup_sections</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">cleanups_list</span> <span class="o">=</span> <span class="n">configuration_json</span><span class="p">[</span><span class="s2">&quot;CleanupSection&quot;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">cleanup_object</span> <span class="ow">in</span> <span class="n">cleanups_list</span><span class="p">:</span>
+            <span class="n">cleanup_sections</span><span class="p">[</span><span class="n">cleanup_object</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cleanup_object</span><span class="p">[</span><span class="s2">&quot;Steps&quot;</span><span class="p">]</span>
+
+        <span class="n">jobs_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">each_job</span> <span class="ow">in</span> <span class="n">configuration_json</span><span class="p">[</span><span class="s2">&quot;JobsDefinitions&quot;</span><span class="p">]:</span>
+            <span class="n">job_object</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;JobName&quot;</span><span class="p">:</span> <span class="n">each_job</span><span class="p">[</span><span class="s2">&quot;JobName&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;JobTags&quot;</span><span class="p">:</span> <span class="n">each_job</span><span class="p">[</span><span class="s2">&quot;JobMetadata&quot;</span><span class="p">][</span><span class="s2">&quot;Tags&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;Entities&quot;</span><span class="p">:</span> <span class="n">each_job</span><span class="p">[</span><span class="s2">&quot;Entities&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;CleanupSection&quot;</span><span class="p">:</span> <span class="n">cleanup_sections</span>
+            <span class="p">}</span>
+
+            <span class="n">jobs_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job_object</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">jobs_data</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.save_variables"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.save_variables">[docs]</a>    <span class="k">def</span> <span class="nf">save_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configurations_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This fucntion takes the configuration file and extracts all the variables</span>
+<span class="sd">        from the sections that are to be defined as variables and not has hardcoded</span>
+<span class="sd">        files inside the robot code file.</span>
+<span class="sd">        The fucntions first extracts variables from JobsDefinitions, in JobsDefinitions from</span>
+<span class="sd">        Sections like,</span>
+<span class="sd">        - **EntityConfigs**</span>
+<span class="sd">        - **Ingestion**</span>
+<span class="sd">        - **ETLWait**</span>
+<span class="sd">        The function secondly extracts the variables from the TestCases, in Testcases from Sections</span>
+<span class="sd">        like,</span>
+<span class="sd">        - **Validations**</span>
+
+<span class="sd">        :param configurations_json: The configuration file in JSON format</span>
+<span class="sd">        :type configurations_json: dict</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">jobs_configs</span> <span class="o">=</span> <span class="n">configurations_json</span><span class="p">[</span><span class="s1">&#39;JobsDefinitions&#39;</span><span class="p">]</span>
+        <span class="n">testcase_configs</span> <span class="o">=</span> <span class="n">configurations_json</span><span class="p">[</span><span class="s1">&#39;TestCases&#39;</span><span class="p">]</span>
+
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        For JobsDefinitions</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">jobs</span> <span class="ow">in</span> <span class="n">jobs_configs</span><span class="p">:</span>
+
+            <span class="n">job_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;JobName&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;JobMetadata&quot;</span><span class="p">]:</span>
+
+                <span class="n">job_name</span> <span class="o">=</span> <span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;JobName&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+                <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">                Section: EntityConfiguration</span>
+<span class="sd">                &#39;&#39;&#39;</span>
+                <span class="c1"># since each job can have multiple Entity Configurations so it requires a counter logic</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;EntityConfigs&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">parse_section</span><span class="p">(</span><span class="n">testcase_name</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span>
+                                       <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;EntityConfigs_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span>
+                                       <span class="n">section_dict</span><span class="o">=</span><span class="n">entity</span><span class="p">)</span>
+                    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">                Section: Ingestion</span>
+<span class="sd">                &#39;&#39;&#39;</span>
+                <span class="c1"># since each job can have multiple Ingestions so it requires a counter logic</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">ingest</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;Ingestion&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">parse_section</span><span class="p">(</span><span class="n">testcase_name</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span>
+                                       <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;Ingestion_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">ingest</span><span class="p">[</span><span class="s2">&quot;IngestionName&quot;</span><span class="p">],</span>
+                                       <span class="n">section_dict</span><span class="o">=</span><span class="n">ingest</span><span class="p">)</span>
+                    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">                Section: ETLWait</span>
+<span class="sd">                &#39;&#39;&#39;</span>
+
+                <span class="c1"># Entity is a probable { key : value } that will require replacement)</span>
+                <span class="n">etl_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replace_values_in_section</span><span class="p">(</span><span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;Entities&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">jobs</span><span class="p">[</span><span class="s2">&quot;ETLWait&quot;</span><span class="p">])</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">parse_section</span><span class="p">(</span><span class="n">testcase_name</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;ETLWait&#39;</span><span class="p">,</span>
+                                   <span class="n">section_dict</span><span class="o">=</span><span class="n">etl_dict</span><span class="p">)</span>
+
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        For TestCases</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">tests</span> <span class="ow">in</span> <span class="n">testcase_configs</span><span class="p">:</span>
+
+            <span class="n">testcase_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">tests</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tests</span><span class="p">[</span><span class="s2">&quot;TestCaseType&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tests</span><span class="p">[</span><span class="s2">&quot;TestMetadata&quot;</span><span class="p">]:</span>
+
+                <span class="n">testcase_name</span> <span class="o">=</span> <span class="n">tests</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+                <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">                Section: Validations</span>
+<span class="sd">                &#39;&#39;&#39;</span>
+                <span class="c1"># since each testcase can have multiple validations so it requires a counter logic</span>
+                <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">validation</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">[</span><span class="s2">&quot;Validations&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">parse_section</span><span class="p">(</span><span class="n">testcase_name</span><span class="o">=</span><span class="n">testcase_name</span><span class="p">,</span>
+                                       <span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;Validations_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">validation</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">],</span>
+                                       <span class="n">section_dict</span><span class="o">=</span><span class="n">validation</span><span class="p">)</span>
+                    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either Test Case Name, it&#39;s TestCaseType or TestMetadata is &quot;</span> <span class="o">+</span>
+                                 <span class="s2">&quot;missing from one of the mentioned testcases in configuration file.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_variables</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;VARIABLEDUMP.json&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.dump_variables"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.dump_variables">[docs]</a>    <span class="k">def</span> <span class="nf">dump_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This functions on making a decision on filename generates a JSON</span>
+<span class="sd">        file locally including the variables</span>
+
+<span class="sd">        :param filename: this filename suggest in which file the variables are to be saved</span>
+<span class="sd">        :type filename: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s2">&quot;VARIABLEDUMP.json&quot;</span><span class="p">:</span>
+            <span class="n">fd</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+            <span class="n">json_to_dump</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;RequiredVariables&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables_list</span>
+            <span class="p">}</span>
+
+            <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_to_dump</span><span class="p">))</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s2">&quot;ENTITYVARIABLEDUMP.json&quot;</span><span class="p">:</span>
+            <span class="n">fd</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+            <span class="n">json_to_dump</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;RequiredVariables&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">replace_variables_list</span>
+            <span class="p">}</span>
+
+            <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_to_dump</span><span class="p">))</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.save_entity_varialbes"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.save_entity_varialbes">[docs]</a>    <span class="k">def</span> <span class="nf">save_entity_varialbes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        In our code flow, the cleanup section is generic and runs for multiple</span>
+<span class="sd">        entites by replacing the values passed in the &quot;Entities&quot; section inside the JSON</span>
+<span class="sd">        configuration file. This functions inputs a complex defined variable entity_json which includes</span>
+<span class="sd">        &quot;JobName&quot;: string,</span>
+<span class="sd">        &quot;JobTags&quot;: string,</span>
+<span class="sd">        &quot;Entities&quot;: a list of objects,</span>
+<span class="sd">        &quot;CleanupSection&quot; : a list of nested objects</span>
+<span class="sd">        It utilizes this information to create variables used for the CleanupSection</span>
+
+<span class="sd">        :param entity_json: entity json holds JobName, CleanupSection, JobTags and Entites for that Job</span>
+<span class="sd">        :type  entity_json: object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># entity_json has variable objects that are in</span>
+        <span class="c1"># definition packed by function : get_cleanup_configuration</span>
+        <span class="c1"># &quot;JobName&quot;: string,</span>
+        <span class="c1"># &quot;JobTags&quot;: string,</span>
+        <span class="c1"># &quot;Entities&quot;: a list of objects,</span>
+        <span class="c1"># &quot;CleanupSection&quot; : a list of nested objects</span>
+
+        <span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">entity_json</span><span class="p">:</span>
+
+            <span class="n">job_name</span> <span class="o">=</span> <span class="nb">object</span><span class="p">[</span><span class="s2">&quot;JobName&quot;</span><span class="p">]</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="nb">object</span><span class="p">[</span><span class="s2">&quot;Entities&quot;</span><span class="p">]</span>
+            <span class="n">cleanup_section_list</span> <span class="o">=</span> <span class="nb">object</span><span class="p">[</span><span class="s2">&quot;CleanupSection&quot;</span><span class="p">]</span>
+
+            <span class="c1"># Each list object in CleanupSection is divided as</span>
+            <span class="c1"># [  { Name : step name</span>
+            <span class="c1">#      Steps : a list of steps to follow</span>
+            <span class="c1">#    } ]</span>
+
+            <span class="c1"># This conversion is made because the json.loads() function</span>
+            <span class="c1"># being used does not properly treat objects unless</span>
+            <span class="c1"># they are not in proper JSON format</span>
+
+            <span class="k">for</span> <span class="n">each_object_key</span> <span class="ow">in</span> <span class="n">cleanup_section_list</span><span class="p">:</span>
+
+                <span class="n">section</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">each_object_key</span><span class="p">,</span>
+                    <span class="s2">&quot;Section&quot;</span><span class="p">:</span> <span class="n">cleanup_section_list</span><span class="p">[</span><span class="n">each_object_key</span><span class="p">]</span>
+                <span class="p">}</span>
+
+                <span class="c1"># Now we iterated through each entity defined in a single JobsDefinition</span>
+                <span class="c1"># Section</span>
+
+                <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">:</span>
+
+                    <span class="c1"># Each entity will have many steps to follow and steps can have similar names,</span>
+                    <span class="c1"># so we use a counter to differentiate them</span>
+
+                    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+                    <span class="c1"># Iterate through the list of sections extracted from the</span>
+                    <span class="c1"># cleanup section</span>
+
+                    <span class="k">for</span> <span class="n">each_section</span> <span class="ow">in</span> <span class="n">section</span><span class="p">[</span><span class="s2">&quot;Section&quot;</span><span class="p">]:</span>
+
+                        <span class="c1"># We opt only for that section that the</span>
+                        <span class="c1"># entity has defined for itself in the configuration file</span>
+                        <span class="c1"># else we pass that element in the list</span>
+
+                        <span class="k">if</span> <span class="n">section</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;Cleanup&quot;</span><span class="p">]:</span>
+
+                            <span class="n">str_section</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">each_section</span><span class="p">)</span>
+
+                            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">entity</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;Cleanup&quot;</span><span class="p">:</span>
+                                    <span class="k">pass</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="n">str_section</span> <span class="o">=</span> <span class="n">str_section</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="n">entity</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+                            <span class="n">dict_section</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">str_section</span><span class="p">)</span>
+
+                            <span class="bp">self</span><span class="o">.</span><span class="n">variable_object</span><span class="p">(</span><span class="s2">&quot;Replace&quot;</span><span class="p">,</span>
+                                                 <span class="n">job_name</span><span class="p">,</span>
+                                                 <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;EntityName&quot;</span><span class="p">],</span>
+                                                 <span class="n">dict_section</span><span class="p">[</span><span class="s2">&quot;OperationType&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span>
+                                                 <span class="n">dict_section</span><span class="p">[</span><span class="s2">&quot;Configurations&quot;</span><span class="p">])</span>
+                            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">pass</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_variables</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;ENTITYVARIABLEDUMP.json&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.parse_section"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.parse_section">[docs]</a>    <span class="k">def</span> <span class="nf">parse_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">testcase_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">section_dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Takes a section as input like ingestion, validations etc and creates required dictionaries</span>
+<span class="sd">        and lists variables in robot code file. This method returns the parse section as a string.</span>
+<span class="sd">        This method uses other two methods like variable_dictionary and variable_list.</span>
+
+<span class="sd">        :param testcase_name: Name of the testcase for which the section is to be parsed</span>
+<span class="sd">        :type testcase_name: str</span>
+<span class="sd">        :param section_name: Section of the testcase for which the section is to be parsed</span>
+<span class="sd">        :type section_name: str</span>
+<span class="sd">        :param section_dict: This depends on the input, it may be a list, a dictionary or a complex nested object</span>
+<span class="sd">        :type section_dict: object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">for</span> <span class="n">keys</span> <span class="ow">in</span> <span class="n">section_dict</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">section_dict</span><span class="p">[</span><span class="n">keys</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">dict</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">section_dict</span><span class="p">[</span><span class="n">keys</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">keys</span> <span class="o">==</span> <span class="s2">&quot;Steps&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s2">&quot;Ingestion&quot;</span> <span class="ow">in</span> <span class="n">section_name</span><span class="p">:</span>
+                        <span class="n">send_dict</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s2">&quot;Steps&quot;</span><span class="p">:</span> <span class="n">section_dict</span><span class="p">[</span><span class="n">keys</span><span class="p">]</span>
+                        <span class="p">}</span>
+
+                        <span class="bp">self</span><span class="o">.</span><span class="n">variable_object</span><span class="p">(</span><span class="s2">&quot;Plain&quot;</span><span class="p">,</span>
+                                             <span class="n">testcase_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">send_dict</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">variable_object</span><span class="p">(</span><span class="s2">&quot;Plain&quot;</span><span class="p">,</span>
+                                         <span class="n">testcase_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">section_dict</span><span class="p">[</span><span class="n">keys</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.variable_object"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.variable_object">[docs]</a>    <span class="k">def</span> <span class="nf">variable_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_type</span><span class="p">,</span> <span class="n">testcase_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        It forms a list variable for the robot code against a list and returns</span>
+<span class="sd">        it as a string on basis of the passed parameters</span>
+
+<span class="sd">        :param list_type: this determines in which list to append the variables into</span>
+<span class="sd">        :type list_type: str</span>
+<span class="sd">        :param testcase_name: name of the testcase for which the variable is to be generated</span>
+<span class="sd">        :type testcase_name: str</span>
+<span class="sd">        :param section_name: section name of the testcase for which the variable is to be generated</span>
+<span class="sd">        :type section_name: str</span>
+<span class="sd">        :param key: This key is basically the operation type or the choice taken inside the section to generate the variable for</span>
+<span class="sd">        :type key: str</span>
+<span class="sd">        :param value: This is the object for the variable that will be packed and added to a global list on basis of the list_type choice</span>
+<span class="sd">        :type  value: dict</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">format_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">testcase_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="n">object_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">format_name</span><span class="p">)</span>
+
+        <span class="n">object_pack</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">object_name</span><span class="p">,</span>
+            <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="n">value</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">list_type</span> <span class="o">==</span> <span class="s1">&#39;Plain&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variables_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">object_pack</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">list_type</span> <span class="o">==</span> <span class="s1">&#39;Replace&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">replace_variables_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">object_pack</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="variablesGenerator.replace_values_in_section"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.variablesGenerator.variablesGenerator.replace_values_in_section">[docs]</a>    <span class="k">def</span> <span class="nf">replace_values_in_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This function inputs entity with it&#39;s other defined parameters and replaces</span>
+<span class="sd">        them in a section, in section it&#39;s mentioned with the key in entities like EntityName, Domain etc</span>
+
+<span class="sd">        :param entity: A single entity object which has EntityName, Cleanup and other optional key value pairs</span>
+<span class="sd">        :type entity: dict</span>
+<span class="sd">        :param section: the section in which the file is to be replaced</span>
+<span class="sd">        :type section: object</span>
+<span class="sd">        :return: The section sent as parameter with replaced values with entity dict keys</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">dummy_section</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;Dummy&quot;</span><span class="p">:</span> <span class="n">section</span> <span class="p">}</span>
+        <span class="n">dict_to_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dummy_section</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">entity</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;Cleanup&quot;</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dict_to_json</span> <span class="o">=</span> <span class="n">dict_to_json</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="n">entity</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+        <span class="n">json_to_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">dict_to_json</span><span class="p">)</span>
+        <span class="n">replaced_section</span> <span class="o">=</span> <span class="n">json_to_dict</span><span class="p">[</span><span class="s2">&quot;Dummy&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">replaced_section</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

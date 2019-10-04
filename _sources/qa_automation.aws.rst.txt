@@ -1,0 +1,54 @@
+qa\_automation.aws package
+==========================
+
+Submodules
+----------
+
+qa\_automation.aws.dbHelper module
+----------------------------------
+
+.. automodule:: qa_automation.aws.dbHelper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qa\_automation.aws.emailHelper module
+-------------------------------------
+
+.. automodule:: qa_automation.aws.emailHelper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qa\_automation.aws.entity module
+--------------------------------
+
+.. automodule:: qa_automation.aws.entity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qa\_automation.aws.ingestion module
+-----------------------------------
+
+.. automodule:: qa_automation.aws.ingestion
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qa\_automation.aws.s3Helper module
+----------------------------------
+
+.. automodule:: qa_automation.aws.s3Helper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: qa_automation.aws
+   :members:
+   :undoc-members:
+   :show-inheritance:

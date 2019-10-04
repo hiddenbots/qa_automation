@@ -1,0 +1,371 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.aws.s3Helper &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qa_automation.aws.s3Helper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;  </span>
+
+<span class="sd">**Description**: to perform Activities relating to AWS S3 </span>
+
+<span class="sd">**Author**: Ahmad Afraz Khan</span>
+
+<span class="sd">**********************************************************</span>
+<span class="sd">Modification Log:  </span>
+<span class="sd">**********************************************************</span>
+<span class="sd">Date             |           Author                    |                  Description</span>
+<span class="sd">**********************************************************  </span>
+<span class="sd">27/09/2019       |           Ahmad Afraz Khan, Danial Ahmed       |     Final draft.</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="sd">--------------------------------------------------------------------------</span>
+<span class="sd">&quot;&quot;&quot;</span>  
+  
+<span class="kn">import</span> <span class="nn">boto3</span>  
+<span class="kn">from</span> <span class="nn">botocore.exceptions</span> <span class="k">import</span> <span class="n">ClientError</span><span class="p">,</span><span class="n">UnknownServiceError</span>  
+<span class="kn">from</span> <span class="nn">logging</span> <span class="k">import</span> <span class="o">*</span>  
+<span class="kn">import</span> <span class="nn">os</span>  
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>  
+<span class="kn">from</span> <span class="nn">operator</span> <span class="k">import</span> <span class="n">itemgetter</span>  
+  
+<div class="viewcode-block" id="s3Helper"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper">[docs]</a><span class="k">class</span> <span class="nc">s3Helper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; This class performes all operations related to AWS s3. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method initiates a resource as well as a client for s3.&quot;&quot;&quot;</span>  
+          
+        <span class="k">try</span><span class="p">:</span>  
+            <span class="n">session</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3_resource</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+  
+  
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;s3 helper not started&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<div class="viewcode-block" id="s3Helper.generate_object_name_local"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.generate_object_name_local">[docs]</a>    <span class="k">def</span> <span class="nf">generate_object_name_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_key</span><span class="p">,</span> <span class="n">entitypath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        makes a bucket key of a local file for uploading it as an object to s3</span>
+
+<span class="sd">        :param entitypath: it contains local file path</span>
+<span class="sd">        :type entitypath: str</span>
+<span class="sd">        :param target_key: it contains target bucket key, where object will be uploaded</span>
+<span class="sd">        :type target_key: str</span>
+<span class="sd">        :return: returns target s3 key where file will be uploaded.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">entitypath</span>
+
+        <span class="k">if</span> <span class="n">entitypath</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">Tokens</span> <span class="o">=</span> <span class="n">entitypath</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="n">Tokens</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">Tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">target_key</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">target_key</span> <span class="o">=</span> <span class="n">target_key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">key_path</span> <span class="o">=</span> <span class="n">target_key</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">file_name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key_path</span> <span class="o">=</span> <span class="n">file_name</span>
+
+        <span class="k">return</span> <span class="n">key_path</span></div>
+
+<div class="viewcode-block" id="s3Helper.generate_object_name_s3"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.generate_object_name_s3">[docs]</a>    <span class="k">def</span> <span class="nf">generate_object_name_s3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_key</span><span class="p">,</span> <span class="n">entitypath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        makes a bucket key for uploading an object to s3 from source bucket</span>
+
+<span class="sd">        :param entitypath: it containes s3 path of source file on s3</span>
+<span class="sd">        :type entitypath: str</span>
+<span class="sd">        :param target_key: it contains target bucket key, where object will be uploaded</span>
+<span class="sd">        :type target_key: str</span>
+<span class="sd">        :return: returns a tuple, which containes source file s3 path ``dict {&#39;Bucket&#39;:str,&#39;Key&#39;:str}`` along with target bucket key</span>
+<span class="sd">        :rtype: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">entity_config_s3_tokens</span> <span class="o">=</span> <span class="n">entitypath</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">entity_config_bucket_name</span> <span class="o">=</span> <span class="n">entity_config_s3_tokens</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">entity_config_prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="nb">str</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">entity_config_s3_tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">entity_config_prefix</span> <span class="o">+=</span> <span class="n">entity_config_s3_tokens</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span>
+
+        <span class="n">entity_config_filename</span> <span class="o">=</span> <span class="n">entity_config_s3_tokens</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">entity_config_s3_tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">entity_config_prefix</span> <span class="o">+=</span> <span class="n">entity_config_filename</span>
+
+        <span class="n">copy_source</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Bucket&#39;</span><span class="p">:</span> <span class="n">entity_config_bucket_name</span><span class="p">,</span>
+            <span class="s1">&#39;Key&#39;</span><span class="p">:</span> <span class="n">entity_config_prefix</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">target_key</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">target_key</span> <span class="o">=</span> <span class="n">entity_config_filename</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">target_key</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">entity_config_filename</span>
+
+        <span class="k">return</span> <span class="n">copy_source</span><span class="p">,</span> <span class="n">target_key</span></div>
+
+<div class="viewcode-block" id="s3Helper.generate_folder_prefix"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.generate_folder_prefix">[docs]</a>    <span class="k">def</span> <span class="nf">generate_folder_prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s3path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this function generates s3 prefix without target object.</span>
+
+<span class="sd">        :param s3path: s3 path </span>
+<span class="sd">        :type s3path: str</span>
+<span class="sd">        :return: returns a tuple containing s3 prefix with no final object &amp; bucket name</span>
+<span class="sd">        :rtype: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">s3path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">se</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">se</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">+=</span> <span class="n">tokens</span><span class="p">[</span><span class="n">se</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">+=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">tokens</span><span class="p">[</span><span class="n">se</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="s3Helper.upload_object"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.upload_object">[docs]</a>    <span class="k">def</span> <span class="nf">upload_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">IngestionS3Config</span><span class="p">,</span> <span class="n">entitypath</span><span class="p">):</span>
+        <span class="c1"># modifying target bucket prefix </span>
+
+        <span class="n">target_key</span><span class="p">,</span> <span class="n">target_bucket_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_folder_prefix</span><span class="p">(</span><span class="n">IngestionS3Config</span><span class="p">)</span>
+        <span class="n">key_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_object_name_local</span><span class="p">(</span><span class="n">target_key</span><span class="p">,</span> <span class="n">entitypath</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># uploading entity from local path  </span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">entitypath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">target_bucket_name</span><span class="p">,</span> <span class="n">key_path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="s3Helper.s3_object_copy"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.s3_object_copy">[docs]</a>    <span class="k">def</span> <span class="nf">s3_object_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">IngestionS3Config</span><span class="p">,</span> <span class="n">entitypath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">        this function moves s3 object from one bucket to other bucket  </span>
+
+<span class="sd">        :param IngestionS3Config: s3 path for source obj </span>
+<span class="sd">        :type IngestionS3Config: str</span>
+<span class="sd">        :param entitypath: s3 path for target object, which would be uploaded</span>
+<span class="sd">        :type entitypath: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target_key</span><span class="p">,</span> <span class="n">target_bucket_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_folder_prefix</span><span class="p">(</span><span class="n">IngestionS3Config</span><span class="p">)</span>
+        <span class="n">copy_source</span><span class="p">,</span> <span class="n">target_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_object_name_s3</span><span class="p">(</span><span class="n">target_key</span><span class="p">,</span> <span class="n">entitypath</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_resource</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">target_bucket_name</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">copy_source</span><span class="p">,</span> <span class="n">target_key</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
+   
+<div class="viewcode-block" id="s3Helper.download_athena_output"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.download_athena_output">[docs]</a>    <span class="k">def</span> <span class="nf">download_athena_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s3_output_athena</span><span class="p">,</span> <span class="n">QueryExecutionId</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>  
+        <span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">        This method is used to download the output of an ETL job for comparison with expected output.  </span>
+<span class="sd">  </span>
+<span class="sd">        :param s3_output_athena: it is a s3 path to download output file of an ETL job.  </span>
+<span class="sd">        :type s3_output_athena: str</span>
+<span class="sd">        :param QueryExecutionId: ID of query bieng executed on Ahena.</span>
+<span class="sd">        :type QueryExecutionId: int</span>
+<span class="sd">        :param file_name: path to a local file.</span>
+<span class="sd">        :type file_name: str</span>
+<span class="sd">        :retun: a local file path, in which athena&#39;s results exist</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>  
+  
+        <span class="n">bucket_name</span> <span class="o">=</span> <span class="n">s3_output_athena</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>  
+        <span class="nb">print</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>  
+        <span class="n">object_path</span> <span class="o">=</span> <span class="n">QueryExecutionId</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>  
+  
+        <span class="k">try</span><span class="p">:</span>  
+  
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">download_fileobj</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">object_path</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>  
+  
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
+            <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>  
+                <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>  
+                <span class="n">path</span> <span class="o">+=</span> <span class="n">file_name</span>  
+            <span class="k">else</span><span class="p">:</span>  
+                <span class="n">path</span> <span class="o">=</span> <span class="n">file_name</span>  
+  
+            <span class="k">return</span> <span class="n">path</span>  
+  
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  
+  
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  </div>
+  
+<div class="viewcode-block" id="s3Helper.download_object"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.download_object">[docs]</a>    <span class="k">def</span> <span class="nf">download_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s3path</span><span class="p">):</span>  
+        <span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">        This method is used to download an object from s3 bucket.  </span>
+<span class="sd">  </span>
+<span class="sd">        :param s3path: s3 path where object is located</span>
+<span class="sd">        :type s3path: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>  
+  
+        <span class="n">s3_tokens</span> <span class="o">=</span> <span class="n">s3path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>  
+        <span class="n">bucket_name</span> <span class="o">=</span> <span class="n">s3_tokens</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  
+        <span class="n">object_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">s3_tokens</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s3_tokens</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  
+  
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s3_tokens</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>  
+            <span class="k">for</span> <span class="nb">str</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">s3_tokens</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>  
+                <span class="n">object_path</span><span class="o">+=</span><span class="n">s3_tokens</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;/&quot;</span>
+            <span class="n">object_path</span><span class="o">+=</span><span class="n">filename</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">object_path</span><span class="o">+=</span><span class="n">filename</span>
+
+        <span class="k">try</span><span class="p">:</span>  
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">download_fileobj</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">object_path</span> <span class="p">,</span> <span class="n">f</span><span class="p">)</span>  
+                <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
+  
+            <span class="k">return</span> <span class="n">filename</span>  
+  
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  
+  
+        <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="s3Helper.upload_results"><a class="viewcode-back" href="../../../qa_automation.aws.html#qa_automation.aws.s3Helper.s3Helper.upload_results">[docs]</a>    <span class="k">def</span> <span class="nf">upload_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s3path</span><span class="p">,</span> <span class="n">testsuite_name</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        uploads Test Suite execution results to specified bucket along with Robot code generated</span>
+
+<span class="sd">        :param testsuite_name: Name of test suite containing test cases</span>
+<span class="sd">        :type testsuite_name: str</span>
+<span class="sd">        :param s3path: s3 path where files will be uploaded</span>
+<span class="sd">        :type s3path: str</span>
+<span class="sd">        :param files: a dictionary having paths of required files to be uploaded ``dict {&#39;Robot&#39;:&#39;&#39;,&#39;Log&#39;:&#39;&#39;,&#39;Xml&#39;:&#39;&#39;,&#39;Report&#39;:&#39;&#39;}``</span>
+<span class="sd">        :type files: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">robot_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Robot&#39;</span><span class="p">])</span>
+        <span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Log&#39;</span><span class="p">])</span>
+        <span class="n">report_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Report&#39;</span><span class="p">])</span>
+        <span class="n">xml_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Xml&#39;</span><span class="p">])</span>
+
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">log_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">log_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">folder_name</span> <span class="o">=</span> <span class="n">testsuite_name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">timestamp</span>
+        <span class="n">prefix</span><span class="p">,</span> <span class="n">bucket_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_folder_prefix</span><span class="p">(</span><span class="n">s3path</span><span class="p">)</span>
+
+        <span class="n">code_prefix</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">+</span><span class="n">testsuite_name</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">timestamp</span> <span class="o">+</span> <span class="s1">&#39;/Code/&#39;</span>
+        <span class="n">results_prefix</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">+</span><span class="n">testsuite_name</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">timestamp</span> <span class="o">+</span> <span class="s1">&#39;/Results/&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Robot&#39;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">robot_prefix</span> <span class="o">=</span> <span class="n">code_prefix</span> <span class="o">+</span> <span class="n">robot_path</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">,</span> <span class="n">robot_prefix</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Log&#39;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">log_prefix</span> <span class="o">=</span> <span class="n">results_prefix</span> <span class="o">+</span> <span class="n">log_path</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">,</span> <span class="n">log_prefix</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Report&#39;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">report_prefix</span> <span class="o">=</span> <span class="n">results_prefix</span> <span class="o">+</span> <span class="n">report_path</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">,</span> <span class="n">report_prefix</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;Xml&#39;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">output_prefix</span> <span class="o">=</span> <span class="n">results_prefix</span> <span class="o">+</span> <span class="n">xml_path</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">,</span> <span class="n">output_prefix</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

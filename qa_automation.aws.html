@@ -1,0 +1,501 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.aws package &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="qa_automation.robot_code_generator package" href="qa_automation.robot_code_generator.html" />
+    <link rel="prev" title="qa_automation package" href="qa_automation.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="qa_automation.robot_code_generator.html" title="qa_automation.robot_code_generator package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qa_automation.html" title="qa_automation package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >qa_automation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="qa_automation.html" accesskey="U">qa_automation package</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">qa_automation.aws package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-qa_automation.aws.dbHelper">qa_automation.aws.dbHelper module</a><ul>
+<li><a class="reference internal" href="#modification-log">Modification Log:</a></li>
+<li><a class="reference internal" href="#date-author-description">Date                                            Author                                                                      Description</a></li>
+<li><a class="reference internal" href="#danial-ahmed-ahmad-afraz-khan-taha-bilal-gillani-final-draft">23/09/2019                                      Danial Ahmed, Ahmad Afraz Khan, Taha Bilal Gillani              Final draft.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.aws.emailHelper">qa_automation.aws.emailHelper module</a><ul>
+<li><a class="reference internal" href="#id1">Date             |           Author                |                  Description</a><ul>
+<li><a class="reference internal" href="#ahmad-afraz-khan-final-draft">19/09/2019       |           Ahmad Afraz Khan      |     Final draft.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.aws.entity">qa_automation.aws.entity module</a><ul>
+<li><a class="reference internal" href="#id2">Modification Log:</a></li>
+<li><a class="reference internal" href="#id3">Date                        Author                  Description</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.aws.ingestion">qa_automation.aws.ingestion module</a><ul>
+<li><a class="reference internal" href="#id4">Modification Log:</a></li>
+<li><a class="reference internal" href="#id5">Date                        Author                  Description</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.aws.s3Helper">qa_automation.aws.s3Helper module</a><ul>
+<li><a class="reference internal" href="#id6">Modification Log:</a><ul>
+<li><a class="reference internal" href="#id7">Date             |           Author                    |                  Description</a><ul>
+<li><a class="reference internal" href="#ahmad-afraz-khan-danial-ahmed-final-draft">27/09/2019       |           Ahmad Afraz Khan, Danial Ahmed       |     Final draft.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-qa_automation.aws">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="qa_automation.html"
+                        title="previous chapter">qa_automation package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="qa_automation.robot_code_generator.html"
+                        title="next chapter">qa_automation.robot_code_generator package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/qa_automation.aws.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="qa-automation-aws-package">
+<h1>qa_automation.aws package<a class="headerlink" href="#qa-automation-aws-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-qa_automation.aws.dbHelper">
+<span id="qa-automation-aws-dbhelper-module"></span><h2>qa_automation.aws.dbHelper module<a class="headerlink" href="#module-qa_automation.aws.dbHelper" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modification-log">
+<h3>Modification Log:<a class="headerlink" href="#modification-log" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="date-author-description">
+<h3>Date                                            Author                                                                      Description<a class="headerlink" href="#date-author-description" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="danial-ahmed-ahmad-afraz-khan-taha-bilal-gillani-final-draft">
+<h3>23/09/2019                                      Danial Ahmed, Ahmad Afraz Khan, Taha Bilal Gillani              Final draft.<a class="headerlink" href="#danial-ahmed-ahmad-afraz-khan-taha-bilal-gillani-final-draft" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="qa_automation.aws.dbHelper.dbHelper">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.aws.dbHelper.</code><code class="sig-name descname">dbHelper</code><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.connect_to_rds">
+<code class="sig-name descname">connect_to_rds</code><span class="sig-paren">(</span><em class="sig-param">rds_credentials</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.connect_to_rds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.connect_to_rds" title="Permalink to this definition">¶</a></dt>
+<dd><p>for connecting redshift cluster</p>
+<p>&#64;rds_credentials: a dictionary containing credentials required for connection to an RDS database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.connect_to_redshift">
+<code class="sig-name descname">connect_to_redshift</code><span class="sig-paren">(</span><em class="sig-param">redshift_credentials</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.connect_to_redshift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.connect_to_redshift" title="Permalink to this definition">¶</a></dt>
+<dd><p>for connecting redshift cluster</p>
+<p>&#64;redshift_credentials: a dictionary containing credentials required for connection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.db_connection">
+<em class="property">static </em><code class="sig-name descname">db_connection</code><span class="sig-paren">(</span><em class="sig-param">connection_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.db_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.db_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>regular connection to RDS DB instance
+&#64;connection_info: a dict containing DB connection info</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.delete_rds_table">
+<code class="sig-name descname">delete_rds_table</code><span class="sig-paren">(</span><em class="sig-param">query_data</em>, <em class="sig-param">rds_credentials</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.delete_rds_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.delete_rds_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>droping the whole table</p>
+<p>&#64;rds_credentials: a dictionary containing credentials required for connection to an RDS database
+&#64;table: table name to be dropped</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.delete_redshift_table">
+<code class="sig-name descname">delete_redshift_table</code><span class="sig-paren">(</span><em class="sig-param">Configurations</em>, <em class="sig-param">redshift_credentials</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.delete_redshift_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.delete_redshift_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>droping the whole table</p>
+<p>&#64;redshift_credentials: a dictionary containing credentials required for connection to an RDS database
+&#64;Configurations: data to formulate query for deleting table</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.delete_rows_rds">
+<code class="sig-name descname">delete_rows_rds</code><span class="sig-paren">(</span><em class="sig-param">row_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.delete_rows_rds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.delete_rows_rds" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function deletes specific rows from a rds database based on given conditions</p>
+<p>&#64;credentials: it contains all information required to connect to a database like, db_name, schema etc
+&#64;query_data: data required to make query</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.delete_rows_redshift">
+<code class="sig-name descname">delete_rows_redshift</code><span class="sig-paren">(</span><em class="sig-param">Configurations</em>, <em class="sig-param">credentials</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.delete_rows_redshift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.delete_rows_redshift" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function deletes specific rows from a redshift database based on given conditions</p>
+<p>&#64;credentials: it contains all information required to connect to a database like, db_name, schema etc
+&#64;query_data: data required to make query</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.disconnect_from_DB">
+<code class="sig-name descname">disconnect_from_DB</code><span class="sig-paren">(</span><em class="sig-param">cursor</em>, <em class="sig-param">connection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.disconnect_from_DB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.disconnect_from_DB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.get_rds_table">
+<code class="sig-name descname">get_rds_table</code><span class="sig-paren">(</span><em class="sig-param">rds_credentials</em>, <em class="sig-param">Configurations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.get_rds_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.get_rds_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.get_redshift_table">
+<code class="sig-name descname">get_redshift_table</code><span class="sig-paren">(</span><em class="sig-param">rds_credentials</em>, <em class="sig-param">Configurations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.get_redshift_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.get_redshift_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.insert_record">
+<code class="sig-name descname">insert_record</code><span class="sig-paren">(</span><em class="sig-param">record_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.insert_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.insert_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>inserts a record in a database table
+&#64;record_info: a dictionary containing info about record to be inserted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.perform_query">
+<code class="sig-name descname">perform_query</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">cur</em>, <em class="sig-param">con</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.perform_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.perform_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>executes query &amp; closes connection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.dbHelper.dbHelper.ssl_db_connection">
+<code class="sig-name descname">ssl_db_connection</code><span class="sig-paren">(</span><em class="sig-param">connection_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/dbHelper.html#dbHelper.ssl_db_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.dbHelper.dbHelper.ssl_db_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>for encrypted RDS DB instance connection
+&#64;connection_info: a dict containing DB connection info</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.aws.emailHelper">
+<span id="qa-automation-aws-emailhelper-module"></span><h2>qa_automation.aws.emailHelper module<a class="headerlink" href="#module-qa_automation.aws.emailHelper" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong>:to send reports of a test suit execution to user</p>
+<p><strong>Author</strong>: Ahmad Afraz Khan</p>
+<div class="section" id="id1">
+<h3>Date             |           Author                |                  Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ahmad-afraz-khan-final-draft">
+<h4>19/09/2019       |           Ahmad Afraz Khan      |     Final draft.<a class="headerlink" href="#ahmad-afraz-khan-final-draft" title="Permalink to this headline">¶</a></h4>
+<hr class="docutils" />
+<dl class="class">
+<dt id="qa_automation.aws.emailHelper.emailHelper">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.aws.emailHelper.</code><code class="sig-name descname">emailHelper</code><a class="reference internal" href="_modules/qa_automation/aws/emailHelper.html#emailHelper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.emailHelper.emailHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>this class handles all email notifications in frameworks.</p>
+<dl class="method">
+<dt id="qa_automation.aws.emailHelper.emailHelper.send_email">
+<code class="sig-name descname">send_email</code><span class="sig-paren">(</span><em class="sig-param">files</em>, <em class="sig-param">sender_email</em>, <em class="sig-param">recipients</em>, <em class="sig-param">subject</em>, <em class="sig-param">body_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/emailHelper.html#emailHelper.send_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.emailHelper.emailHelper.send_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function sends email notification with attachements to recipients from QA Framework 
+containing result reports.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sender_email</strong> (<em>str</em>) – Default email id from QA Framework</p></li>
+<li><p><strong>recipients</strong> (<em>list</em>) – all email id’s to which reports will be sent</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – a list containing paths all files to be attached with email.</p></li>
+<li><p><strong>subject</strong> (<em>str</em>) – The subject line for the email.</p></li>
+<li><p><strong>body_text</strong> (<em>str</em>) – The email body for recipients with non-HTML email clients.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="module-qa_automation.aws.entity">
+<span id="qa-automation-aws-entity-module"></span><h2>qa_automation.aws.entity module<a class="headerlink" href="#module-qa_automation.aws.entity" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Modification Log:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id3">
+<h3>Date                        Author                  Description<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>27/09/2019                  Ahmad Afraz Khan            initial draft.  
+—————————————————————————————————</p>
+<dl class="class">
+<dt id="qa_automation.aws.entity.entity">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.aws.entity.</code><code class="sig-name descname">entity</code><a class="reference internal" href="_modules/qa_automation/aws/entity.html#entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.entity.entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="qa_automation.aws.entity.entity.upload_entity">
+<code class="sig-name descname">upload_entity</code><span class="sig-paren">(</span><em class="sig-param">IngestionS3Config</em>, <em class="sig-param">entitypath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/entity.html#entity.upload_entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.entity.entity.upload_entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method will be used to create an entity on s3 for Ingestion in   
+DataLake</p>
+<p>&#64;IngestionS3Config: it is a dictionary containing s3 path info for uploading entity  
+&#64;entityPath: it is path to local entity to be uploaded.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.aws.ingestion">
+<span id="qa-automation-aws-ingestion-module"></span><h2>qa_automation.aws.ingestion module<a class="headerlink" href="#module-qa_automation.aws.ingestion" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>Modification Log:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id5">
+<h3>Date                        Author                  Description<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>27/09/2019                  Ahmad Afraz Khan            Final draft.  
+—————————————————————————————————</p>
+<dl class="class">
+<dt id="qa_automation.aws.ingestion.ingestion">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.aws.ingestion.</code><code class="sig-name descname">ingestion</code><a class="reference internal" href="_modules/qa_automation/aws/ingestion.html#ingestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.ingestion.ingestion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="qa_automation.aws.ingestion.ingestion.ingestion">
+<code class="sig-name descname">ingestion</code><span class="sig-paren">(</span><em class="sig-param">ingestion_steps</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/ingestion.html#ingestion.ingestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.ingestion.ingestion.ingestion" title="Permalink to this definition">¶</a></dt>
+<dd><p>uploads data to s3 for ingestion purpose</p>
+<p>&#64;ingestion_steps: a dictionary containing steps to be performed for complete Ingestion</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-qa_automation.aws.s3Helper">
+<span id="qa-automation-aws-s3helper-module"></span><h2>qa_automation.aws.s3Helper module<a class="headerlink" href="#module-qa_automation.aws.s3Helper" title="Permalink to this headline">¶</a></h2>
+<p><strong>Description</strong>: to perform Activities relating to AWS S3</p>
+<p><strong>Author</strong>: Ahmad Afraz Khan</p>
+<div class="section" id="id6">
+<h3>Modification Log:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h4>Date             |           Author                    |                  Description<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="ahmad-afraz-khan-danial-ahmed-final-draft">
+<h5>27/09/2019       |           Ahmad Afraz Khan, Danial Ahmed       |     Final draft.<a class="headerlink" href="#ahmad-afraz-khan-danial-ahmed-final-draft" title="Permalink to this headline">¶</a></h5>
+<hr class="docutils" />
+<dl class="class">
+<dt id="qa_automation.aws.s3Helper.s3Helper">
+<em class="property">class </em><code class="sig-prename descclassname">qa_automation.aws.s3Helper.</code><code class="sig-name descname">s3Helper</code><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class performes all operations related to AWS s3.</p>
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.download_athena_output">
+<code class="sig-name descname">download_athena_output</code><span class="sig-paren">(</span><em class="sig-param">s3_output_athena</em>, <em class="sig-param">QueryExecutionId</em>, <em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.download_athena_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.download_athena_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to download the output of an ETL job for comparison with expected output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s3_output_athena</strong> (<em>str</em>) – it is a s3 path to download output file of an ETL job.</p></li>
+<li><p><strong>QueryExecutionId</strong> (<em>int</em>) – ID of query bieng executed on Ahena.</p></li>
+<li><p><strong>file_name</strong> (<em>str</em>) – path to a local file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retun</dt>
+<dd class="field-even"><p>a local file path, in which athena’s results exist</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.download_object">
+<code class="sig-name descname">download_object</code><span class="sig-paren">(</span><em class="sig-param">s3path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.download_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.download_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to download an object from s3 bucket.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>s3path</strong> (<em>str</em>) – s3 path where object is located</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.generate_folder_prefix">
+<code class="sig-name descname">generate_folder_prefix</code><span class="sig-paren">(</span><em class="sig-param">s3path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.generate_folder_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.generate_folder_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function generates s3 prefix without target object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>s3path</strong> (<em>str</em>) – s3 path</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns a tuple containing s3 prefix with no final object &amp; bucket name</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.generate_object_name_local">
+<code class="sig-name descname">generate_object_name_local</code><span class="sig-paren">(</span><em class="sig-param">target_key</em>, <em class="sig-param">entitypath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.generate_object_name_local"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.generate_object_name_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>makes a bucket key of a local file for uploading it as an object to s3</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entitypath</strong> (<em>str</em>) – it contains local file path</p></li>
+<li><p><strong>target_key</strong> (<em>str</em>) – it contains target bucket key, where object will be uploaded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns target s3 key where file will be uploaded.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.generate_object_name_s3">
+<code class="sig-name descname">generate_object_name_s3</code><span class="sig-paren">(</span><em class="sig-param">target_key</em>, <em class="sig-param">entitypath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.generate_object_name_s3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.generate_object_name_s3" title="Permalink to this definition">¶</a></dt>
+<dd><p>makes a bucket key for uploading an object to s3 from source bucket</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entitypath</strong> (<em>str</em>) – it containes s3 path of source file on s3</p></li>
+<li><p><strong>target_key</strong> (<em>str</em>) – it contains target bucket key, where object will be uploaded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns a tuple, which containes source file s3 path <code class="docutils literal notranslate"><span class="pre">dict</span> <span class="pre">{'Bucket':str,'Key':str}</span></code> along with target bucket key</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.s3_object_copy">
+<code class="sig-name descname">s3_object_copy</code><span class="sig-paren">(</span><em class="sig-param">IngestionS3Config</em>, <em class="sig-param">entitypath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.s3_object_copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.s3_object_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function moves s3 object from one bucket to other bucket</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>IngestionS3Config</strong> (<em>str</em>) – s3 path for source obj</p></li>
+<li><p><strong>entitypath</strong> (<em>str</em>) – s3 path for target object, which would be uploaded</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.upload_object">
+<code class="sig-name descname">upload_object</code><span class="sig-paren">(</span><em class="sig-param">IngestionS3Config</em>, <em class="sig-param">entitypath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.upload_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.upload_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qa_automation.aws.s3Helper.s3Helper.upload_results">
+<code class="sig-name descname">upload_results</code><span class="sig-paren">(</span><em class="sig-param">s3path</em>, <em class="sig-param">testsuite_name</em>, <em class="sig-param">files</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qa_automation/aws/s3Helper.html#s3Helper.upload_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qa_automation.aws.s3Helper.s3Helper.upload_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>uploads Test Suite execution results to specified bucket along with Robot code generated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testsuite_name</strong> (<em>str</em>) – Name of test suite containing test cases</p></li>
+<li><p><strong>s3path</strong> (<em>str</em>) – s3 path where files will be uploaded</p></li>
+<li><p><strong>files</strong> (<em>dict</em>) – a dictionary having paths of required files to be uploaded <code class="docutils literal notranslate"><span class="pre">dict</span> <span class="pre">{'Robot':'','Log':'','Xml':'','Report':''}</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="module-qa_automation.aws">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-qa_automation.aws" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="qa_automation.robot_code_generator.html" title="qa_automation.robot_code_generator package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qa_automation.html" title="qa_automation package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >qa_automation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="qa_automation.html" >qa_automation package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

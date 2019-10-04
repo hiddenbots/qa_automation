@@ -1,0 +1,332 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>qa_automation.robot_code_generator.jobCreationHelper &#8212; Invesco-QA-Automation 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qa_automation.robot_code_generator.jobCreationHelper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">-------------------------------------------------------------------------------------------------</span>
+<span class="sd">Description: These are methods that assist in creation of the Test Case section in the robot suite</span>
+<span class="sd">             related to the JobDefinitions</span>
+
+<span class="sd">Author: Taha Bilal Gillani</span>
+
+<span class="sd">Modification Log:</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">Date						Author					                                    Description</span>
+<span class="sd">---------------------------------------------------------------------------------------------------</span>
+<span class="sd">24/09/2019					Taha Bilal Gillani	    	Final draft.</span>
+<span class="sd">---------------------------------------------------------------------------------------------------\</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">TAB_SEPERATOR</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+<span class="n">END_OF_LINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Helper Functions for Testcase Generation</span>
+<span class="sd">used by testCaseGenerator.py</span>
+
+<span class="sd">+--- Ingestion Portion             --&gt; ingestion </span>
+<span class="sd">+--- ETL Wait Portion              --&gt; etl_wait (to be coded)</span>
+<span class="sd">+--- Job Metadata Portion          --&gt; job_metadata</span>
+<span class="sd">+--- Entity Configguration Portion --&gt; entity_config </span>
+<span class="sd">+--- String Conversion             --&gt; stringify</span>
+<span class="sd">+--- Positional Printer            --&gt; positional_printer</span>
+
+<span class="sd"> &#39;&#39;&#39;</span>
+
+
+<div class="viewcode-block" id="jobCreationHelper"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper">[docs]</a><span class="k">class</span> <span class="nc">jobCreationHelper</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="jobCreationHelper.stringify"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.stringify">[docs]</a>    <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_string</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Classmethod inputs a string which is to be check if it&#39;s a reference to a varible string</span>
+<span class="sd">        in &quot;$value&quot; format or &quot;value&quot; format, if it&#39;s in the later format, the value will be hardcoded</span>
+<span class="sd">        in the test suite.</span>
+
+<span class="sd">        :param input_string: string to be checked for the format</span>
+<span class="sd">        :type  input_string: str</span>
+<span class="sd">        :return: determined string if it&#39;s to be hardcoded or to be made a variable reference</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">input_string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;$&#39;</span><span class="p">:</span>
+            <span class="n">input_string</span> <span class="o">=</span> <span class="s1">&#39;${&#39;</span> <span class="o">+</span> <span class="n">input_string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span>
+            <span class="k">return</span> <span class="n">input_string</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">input_string</span></div>
+
+<div class="viewcode-block" id="jobCreationHelper.positional_printer"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.positional_printer">[docs]</a>    <span class="k">def</span> <span class="nf">positional_printer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">key_name</span><span class="p">,</span> <span class="n">data_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This function takes the job name, section name, key name and data to be printer, it checks</span>
+<span class="sd">        if the provided input is a list or a dict, if no, it wil have a name implementation in the variable</span>
+<span class="sd">        section and it can be reference here with ${variable} structure, if yes, this value will be passed</span>
+<span class="sd">        to stringify function which performs it&#39;s implementation.</span>
+
+<span class="sd">        :param job_name: The name of the test case</span>
+<span class="sd">        :type  job_name: str</span>
+<span class="sd">        :param section_name: The section of the test case</span>
+<span class="sd">        :type  section_name: str</span>
+<span class="sd">        :param key_name: The key passed, will be different and totally on choice</span>
+<span class="sd">        :type  key_name: str</span>
+<span class="sd">        :param data_json: the test case data in form of dictionary which determins type of data</span>
+<span class="sd">        :type  data_json: object</span>
+<span class="sd">        :return: variable definition in robot code for a keyword</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">job_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">section_name</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">job_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">section_name</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">data_json</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Is the Value entered in JobName </span><span class="si">{}</span><span class="s2"> , Section : </span><span class="si">{}</span><span class="s2"> , Key : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">key_name</span><span class="p">)</span>
+                <span class="o">+</span> <span class="s2">&quot; Correct? </span><span class="se">\n</span><span class="s2"> It seems like an invalide or unsupported option. &quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="jobCreationHelper.job_metadata"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.job_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">job_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">metadata_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        It requires job name and the metadata json as input, metadata_json comes from</span>
+<span class="sd">        the configuraiton file, the metadata includes the Documentation of the test case and the tags that are</span>
+<span class="sd">        passed to the test case in configuration file. This function prints the [Documentation] and [Tags] tags in</span>
+<span class="sd">        the robot code file against a test case.</span>
+
+<span class="sd">        :param job_name: the name of the job which metadata belongs to</span>
+<span class="sd">        :type job_name: str</span>
+<span class="sd">        :param metadata_json: consists all the data required for production of the [Documentation] and [Tags]</span>
+<span class="sd">        :type metadata_json: str</span>
+<span class="sd">        :return: a string in robot code format having the needful</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="s2">&quot;Documentation&quot;</span> <span class="ow">in</span> <span class="n">metadata_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Tags&quot;</span> <span class="ow">in</span> <span class="n">metadata_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="n">tags_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">for</span> <span class="n">tags</span> <span class="ow">in</span> <span class="n">metadata_json</span><span class="p">[</span><span class="s2">&quot;Tags&quot;</span><span class="p">]:</span>
+                    <span class="n">tags_string</span> <span class="o">+=</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="p">(</span>
+                        <span class="n">TAB_SEPERATOR</span> <span class="o">+</span> <span class="s2">&quot;[Documentation]&quot;</span> <span class="o">+</span> <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                        <span class="n">metadata_json</span><span class="p">[</span><span class="s2">&quot;Documentation&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">END_OF_LINE</span> <span class="o">+</span>
+                        <span class="n">TAB_SEPERATOR</span> <span class="o">+</span> <span class="s2">&quot;[Tags]&quot;</span> <span class="o">+</span> <span class="n">tags_string</span> <span class="o">+</span> <span class="n">END_OF_LINE</span>
+                <span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="s2">&quot;Tags are missing or incorrect from JobMetadata in JobDefinitions : &quot;</span> <span class="o">+</span> <span class="n">job_name</span> <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                    <span class="s2">&quot;Please add tag </span><span class="se">\&quot;</span><span class="s2">no_tag</span><span class="se">\&quot;</span><span class="s2"> if no tag is to be assigned.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                <span class="s2">&quot;Descriptions is missing from TestMetadata in Testcase : &quot;</span> <span class="o">+</span> <span class="n">job_name</span> <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="jobCreationHelper.entity_config"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.entity_config">[docs]</a>    <span class="k">def</span> <span class="nf">entity_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">entity_config_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This function takes the name and data json of the section as input and outputs the entity configuration</span>
+<span class="sd">        portion in robotcode file against a testcase. the implementation of this function has decision statements that are taken on</span>
+<span class="sd">        basis of the configurations provided in the JSON portion. At end it prints the test cases against the</span>
+<span class="sd">        given configuration in the robot code file.</span>
+
+<span class="sd">        :param job_name: name of the job for which entity configuration belongs to</span>
+<span class="sd">        :type job_name: str</span>
+<span class="sd">        :param section_name: name of the section which is EntityConfigs</span>
+<span class="sd">        :type section_name: str</span>
+<span class="sd">        :param entity_config_json: consists all the data related to entity configurations for the specific job</span>
+<span class="sd">        :type entity_config_json: dict</span>
+<span class="sd">        :return: returns the entity upload keyword with required fields in robot code fashion</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">entity_config_json</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;S3Upload&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s2">&quot;S3Path&quot;</span> <span class="ow">in</span> <span class="n">entity_config_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="k">if</span> <span class="s2">&quot;S3BucketConfig&quot;</span> <span class="ow">in</span> <span class="n">entity_config_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="s1">&#39;upload entity&#39;</span> <span class="o">+</span>
+                            <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="s1">&#39;S3BucketConfig&#39;</span><span class="p">,</span>
+                                                    <span class="n">entity_config_json</span><span class="p">[</span><span class="s2">&quot;S3BucketConfig&quot;</span><span class="p">])</span> <span class="o">+</span>
+                            <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="s1">&#39;S3Path&#39;</span><span class="p">,</span> <span class="n">entity_config_json</span><span class="p">[</span><span class="s2">&quot;S3Path&quot;</span><span class="p">])</span> <span class="o">+</span>
+                            <span class="n">END_OF_LINE</span>
+                            <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;In jobdefinition : </span><span class="si">{}</span><span class="s2"> , In EntityConfig &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                                 <span class="s2">&quot;S3Path is either incorrect, or unavailible. &quot;</span><span class="p">)</span>
+
+
+        <span class="k">elif</span> <span class="n">entity_config_json</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Local&quot;</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+            <span class="k">if</span> <span class="n">entity_config_json</span><span class="p">[</span><span class="s2">&quot;LocalPath&quot;</span><span class="p">]:</span>
+                <span class="k">pass</span>
+
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;In jobdefinition : </span><span class="si">{}</span><span class="s2"> , In EntityConfig &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                           <span class="s2">&quot;Type is either incorrect, or unavailible. &quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="jobCreationHelper.ingestion"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.ingestion">[docs]</a>    <span class="k">def</span> <span class="nf">ingestion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">ingestion_json</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        It requires job name and the ingestion json as input, ingestion_json comes from</span>
+<span class="sd">        the configuraiton file, the implementation of this function has decision statements that are taken on</span>
+<span class="sd">        basis of the configurations provided in the JSON portion. At end it prints the test cases against the</span>
+<span class="sd">        given configuration in the robot code file.</span>
+
+<span class="sd">        :param job_name: the name of the job for which ingestion is to be executed</span>
+<span class="sd">        :type job_name: str</span>
+<span class="sd">        :param section_name: the name of the section which is Ingestion</span>
+<span class="sd">        :type section_name: str</span>
+<span class="sd">        :param ingestion_json: the data required for the ingestion</span>
+<span class="sd">        :type ingestion_json: dict</span>
+<span class="sd">        :return: the ingestion robot code for the particular job</span>
+<span class="sd">        :rtype: object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="s2">&quot;IngestionName&quot;</span> <span class="ow">in</span> <span class="n">ingestion_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+            <span class="n">ingestion_name</span> <span class="o">=</span> <span class="n">ingestion_json</span><span class="p">[</span><span class="s2">&quot;IngestionName&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Steps&quot;</span> <span class="ow">in</span> <span class="n">ingestion_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ingestion_json</span><span class="p">[</span><span class="s2">&quot;Steps&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+
+                    <span class="k">return</span> <span class="p">(</span><span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="s1">&#39;ingestion&#39;</span> <span class="o">+</span>
+                            <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">ingestion_name</span> <span class="o">+</span> <span class="s2">&quot;_Steps&quot;</span><span class="p">,</span>
+                                                    <span class="n">ingestion_json</span><span class="p">[</span><span class="s2">&quot;Steps&quot;</span><span class="p">])</span> <span class="o">+</span>
+                            <span class="n">END_OF_LINE</span>
+                            <span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;In JobName </span><span class="si">{}</span><span class="s2"> and Section Ingestion &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                                     <span class="s2">&quot;Steps should be a list with dictionaries. &quot;</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;In JobName </span><span class="si">{}</span><span class="s2"> and Section Ingestion &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                               <span class="s2">&quot;Steps keyword does not exisit. &quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Name is incorrect in Ingestion for &quot;</span> <span class="o">+</span>
+                           <span class="s2">&quot;JobName </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="jobCreationHelper.etl_wait"><a class="viewcode-back" href="../../../qa_automation.robot_code_generator.html#qa_automation.robot_code_generator.jobCreationHelper.jobCreationHelper.etl_wait">[docs]</a>    <span class="k">def</span> <span class="nf">etl_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">etl_json</span><span class="p">):</span>
+
+        <span class="n">section_name</span> <span class="o">=</span> <span class="s2">&quot;ETLWait&quot;</span>
+
+        <span class="k">if</span> <span class="s2">&quot;GetDependencyConfig&quot;</span> <span class="ow">and</span> <span class="s2">&quot;ETLWaitConfig&quot;</span> <span class="ow">in</span> <span class="n">etl_json</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="n">etl_json</span><span class="p">[</span><span class="s2">&quot;ETLWaitConfig&quot;</span><span class="p">][</span><span class="s2">&quot;Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DatabaseTable&quot;</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">etl_json</span><span class="p">[</span><span class="s2">&quot;GetDependencyConfig&quot;</span><span class="p">][</span><span class="s2">&quot;Type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;SQL&quot;</span><span class="p">:</span>
+
+                    <span class="k">return</span> <span class="p">(</span>
+                            <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="s1">&#39;etlwait&#39;</span> <span class="o">+</span>
+                            <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="s2">&quot;GetDependencyConfig&quot;</span><span class="p">,</span>
+                                                    <span class="n">etl_json</span><span class="p">[</span><span class="s2">&quot;GetDependencyConfig&quot;</span><span class="p">][</span><span class="s2">&quot;Details&quot;</span><span class="p">])</span> <span class="o">+</span>
+                            <span class="n">TAB_SEPERATOR</span> <span class="o">+</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">positional_printer</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">section_name</span><span class="p">,</span> <span class="s2">&quot;ETLWaitConfig&quot;</span><span class="p">,</span>
+                                                    <span class="n">etl_json</span><span class="p">[</span><span class="s2">&quot;ETLWaitConfig&quot;</span><span class="p">][</span><span class="s2">&quot;Details&quot;</span><span class="p">])</span> <span class="o">+</span>
+                            <span class="n">END_OF_LINE</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;In JobName : </span><span class="si">{}</span><span class="s2"> , in GetDependencyConfig, in Types &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                                    <span class="s2">&quot;Type is either incorrect or unavailible. &quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;In JobName : </span><span class="si">{}</span><span class="s2"> , in ETLWaitConfig, &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                                <span class="s2">&quot;Type is either incorrect or unavailible. &quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;In JobDefinition </span><span class="si">{}</span><span class="s2"> , either the &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="o">+</span>
+                           <span class="s2">&quot;GetDependancyConfig or ETLWaitConfig are empty or missing. &quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Invesco-QA-Automation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, AHMAD AFRAZ KHAN.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>
